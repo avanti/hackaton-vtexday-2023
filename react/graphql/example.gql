@@ -1,5 +1,0 @@
-query example {
-  Example {
-    data
-  }
-}

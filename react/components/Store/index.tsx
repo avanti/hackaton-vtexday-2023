@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-apollo'
 
 /* Queries */
-import EXAMPLE from '../../graphql/example.gql'
+import EXAMPLE from '../../graphql/queries/getAffiliate.gql'
 
 /* Styles */
 import styles from './index.modules.css'

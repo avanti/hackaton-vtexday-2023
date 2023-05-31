@@ -27,6 +27,7 @@ export const createAffiliateLogic = async (
     })
 
     return {
+      affiliateCode: generatedAffiliateCode,
       ...input,
     }
   } catch {
