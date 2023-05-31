@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-apollo'
 
 /* Queries */
-import EXAMPLE from '../../graphql/example.gql'
+import EXAMPLE from '../../graphql/queries/getAffiliate.gql'
 
 /* Styles */
 import styles from './index.modules.css'
@@ -19,8 +19,8 @@ export default () => {
 
   useEffect(() => {
     fetch('/_v/boilerplate-node/example')
-      .then(response => response.json())
-      .then(json => setRESTData(json))
+      .then((response) => response.json())
+      .then((json) => setRESTData(json))
   }, [])
 
   useEffect(() => {

@@ -1,0 +1,6 @@
+mutation setupApp {
+  setupApp
+    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
+    success
+  }
+}

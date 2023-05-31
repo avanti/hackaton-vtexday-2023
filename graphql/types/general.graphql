@@ -1,0 +1,9 @@
+type Pagination {
+  page: Int
+  pageSize: Int
+  total: Int
+}
+
+type SetupResponse {
+  success: Boolean
+}
