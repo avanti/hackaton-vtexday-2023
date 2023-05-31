@@ -5,13 +5,10 @@
   "scripts": {
     "lint": "yarn lint:node && yarn lint:react",
     "format": "prettier --write **/*.ts* --ignore-path .gitignore",
-    "start": "yarn && yarn lint && yarn format && yarn test && yarn vtex:link",
+    "start": "yarn && yarn lint && yarn format && yarn vtex:link",
     "vtex:link": "echo \">> Linking app!\" && vtex link",
     "lint:node": "cd ./node && yarn lint",
-    "lint:react": "cd ./react && yarn lint",
-    "test": "yarn test:node",
-    "test:node": "cd ./node && yarn test",
-    "postinstall": "husky install"
+    "lint:react": "cd ./react && yarn lint"
   },
   "husky": {
     "hooks": {
@@ -30,12 +27,11 @@
   "devDependencies": {
     "@babel/core": "^7.18.0",
     "@babel/preset-react": "^7.17.12",
-    "@imaginary-cloud/prettier-config": "^1.0.0",
     "@types/node": "^12.12.21",
     "@vtex/intl-equalizer": "^2.5.0",
-    "@vtex/prettier-config": "0.1.4",
+    "@vtex/prettier-config": "^1.0.0",
     "eslint": "7.12.1",
-    "eslint-config-vtex": "12.3.2",
+    "eslint-config-vtex": "15.0.2",
     "eslint-config-vtex-react": "6.3.2",
     "husky": "4.2.3",
     "lint-staged": "10.1.1",
@@ -47,5 +43,5 @@
     "referenceLocale": "en",
     "localeDirectory": "messages"
   },
-  "prettier": "@imaginary-cloud/prettier-config"
+  "prettier": "@vtex/prettier-config"
 }

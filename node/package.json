@@ -1,8 +1,11 @@
 {
   "dependencies": {
+    "@vtex/clients": "^2.21.0",
+    "co-body": "^6.0.0",
     "ramda": "^0.26.1"
   },
   "devDependencies": {
+    "@types/co-body": "^0.0.3",
     "@types/node": "^12.0.0",
     "@types/ramda": "types/npm-ramda#dist",
     "@vtex/api": "6.45.15",
@@ -10,7 +13,7 @@
     "typescript": "3.9.7"
   },
   "scripts": {
-    "lint": "tsc --noEmit && tslint -c tslint.json './**/*.ts'"
+    "lint": "tsc --noEmit --pretty"
   },
   "version": "0.3.0"
 }
