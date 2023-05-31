@@ -1,0 +1,22 @@
+type AffiliateCode {
+  code: String
+  affiliateId: String
+  expiresAt: String
+}
+
+input GetAffiliateCodesInput {
+  page: Int
+  pageSize: Int
+  where: String
+}
+
+type GetAffiliateCodesResponse {
+  data: [AffiliateCode]
+  pagination: Pagination
+}
+
+input CreateAffiliateCodeInput {
+  code: String
+  affiliateId: String
+  expiresAt: String
+}

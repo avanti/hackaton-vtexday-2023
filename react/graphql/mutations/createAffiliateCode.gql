@@ -1,0 +1,15 @@
+mutation createAffiliateCode($input: CreateAffiliateCodeInput) {
+  createAffiliateCode(input: $input)
+    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
+    data {
+      code
+      affiliateId
+      expiresAt
+    }
+    pagination {
+      page
+      pageSize
+      total
+    }
+  }
+}

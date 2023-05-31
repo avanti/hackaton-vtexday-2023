@@ -1,3 +1,10 @@
 type Query {
-  Example: Example
+  getAffiliates(input: GetAffiliatesInput): GetAffiliatesResponse
+  getAffiliateCodes(input: GetAffiliateCodesInput): GetAffiliateCodesResponse
+}
+
+type Mutation {
+  setupApp: SetupResponse
+  createAffiliate(input: CreateAffiliateInput): Affiliate
+  createAffiliateCode(input: CreateAffiliateCodeInput): AffiliateCode
 }

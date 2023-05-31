@@ -1,0 +1,32 @@
+query getAffiliates($input: GetAffiliatesInput) {
+  getAffiliates(input: $input)
+    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
+    data {
+      affiliateId
+      sponsor {
+        affiliateId
+        email
+      }
+      name
+      cpf
+      email
+      gender
+      address {
+        postalCode
+        street
+        number
+        neighborhood
+        complement
+        city
+        state
+      }
+      phone
+      status
+    }
+    pagination {
+      page
+      pageSize
+      total
+    }
+  }
+}
