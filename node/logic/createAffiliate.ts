@@ -1,6 +1,7 @@
 import { ResolverError } from '@vtex/api'
 
 import type { IAffiliate } from '../typings'
+import { generateAffiliateCode } from '../helpers/generateAffiliateCode'
 
 export const createAffiliateLogic = async (
   input: IAffiliate,
@@ -10,12 +11,17 @@ export const createAffiliateLogic = async (
     clients: { masterdata /* , acquirer  */ },
   } = ctx
   try {
+    // we can use a lib here to improve randomness
+    const generatedAffiliateCode = generateAffiliateCode()
+
     /* await acquirer.createAffiliate(input) */
 
-    await masterdata.createDocument({
+    const response = await masterdata.createDocument({
       dataEntity: 'affiliateSuppliers',
       schema: 'affiliateSuppliers',
       fields: {
+        affiliateCode: generatedAffiliateCode,
+        status: 'APPROVED',
         ...input,
       },
     })

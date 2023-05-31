@@ -22,7 +22,7 @@ export const getAffiliatesLogic = async (
         pageSize: pageSize ?? 15,
       },
       fields: [
-        'affiliateId,sponsor,name,cpf,email,gender,address,phone,status',
+        'affiliateId,affiliateCode,sponsor,name,cpf,email,gender,address,phone,status',
       ],
       where: where ?? '',
     })

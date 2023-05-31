@@ -1,7 +1,6 @@
 import { ResolverError } from '@vtex/api'
 
 import affiliateSuppliers from '../../mdv2/affiliateSuppliers.json'
-import affiliateSuppliersCodes from '../../mdv2/affiliateSuppliersCodes.json'
 
 export async function setupApp(
   _: unknown,
@@ -20,13 +19,8 @@ export async function setupApp(
       schemaName: 'affiliateSuppliers',
       schemaBody: affiliateSuppliers,
     })
-
-    await masterdata.createOrUpdateSchema({
-      dataEntity: 'affiliateSuppliersCodes',
-      schemaName: 'affiliateSuppliersCodes',
-      schemaBody: affiliateSuppliersCodes,
-    })
   } catch (e) {
+    console.log(e)
     throw new ResolverError('Failed to setup schemas')
   }
 

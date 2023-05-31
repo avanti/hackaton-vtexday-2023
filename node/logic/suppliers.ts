@@ -1,6 +1,6 @@
 import type { IAffiliate, RecipientsBuilderPayload, Supplier } from '../typings'
+import { getAffiliateByCodeLogic } from './getAffiliateByCode'
 import { getAffiliateByIdLogic } from './getAffiliateById'
-import { getAffiliateCodeLogic } from './getAffiliateCode'
 
 interface ICustomApp {
   id: string
@@ -27,23 +27,24 @@ export async function getSuppliersByMiniCart(
 
   const { code } = affiliatesCustomData.fields
 
-  const searchCode = await getAffiliateCodeLogic(code, ctx)
+  let affiliate
 
-  if (!searchCode) {
+  try {
+    affiliate = await getAffiliateByCodeLogic(code, ctx)
+  } catch {
     return []
   }
 
-  const searchAffiliate = await getAffiliateByIdLogic(
-    searchCode.affiliateId,
-    ctx
-  )
-
-  const { affiliateId, cpf, name, sponsor } = searchAffiliate
+  const { affiliateId, cpf, name, sponsor } = affiliate
 
   let affiliateSponsor: IAffiliate | undefined
 
   if (sponsor) {
-    affiliateSponsor = await getAffiliateByIdLogic(sponsor.affiliateId, ctx)
+    try {
+      affiliateSponsor = await getAffiliateByIdLogic(sponsor.affiliateId, ctx)
+    } catch {
+      return []
+    }
   }
 
   const affiliateCommision = affiliateSponsor

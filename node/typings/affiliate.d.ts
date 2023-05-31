@@ -1,5 +1,6 @@
 export interface IAffiliate {
   affiliateId: string
+  affiliateCode?: string
   sponsor: {
     affiliateId: string
     email: string
@@ -18,10 +19,4 @@ export interface IAffiliate {
     state: string
   }
   phone: string
-}
-
-export interface IAffiliateCode {
-  code: string
-  affiliateId: string
-  expiresAt: string
 }

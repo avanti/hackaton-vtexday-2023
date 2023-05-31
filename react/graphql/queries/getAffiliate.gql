@@ -3,6 +3,7 @@ query getAffiliates($input: GetAffiliatesInput) {
     @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
     data {
       affiliateId
+      affiliateCode
       sponsor {
         affiliateId
         email

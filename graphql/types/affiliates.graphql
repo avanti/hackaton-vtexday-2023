@@ -1,10 +1,11 @@
 type Affiliate {
   affiliateId: String
+  affiliateCode: String
   sponsor: Sponsor
   name: String
   cpf: String
   email: String
-  gender: String
+  gender: AffiliateGender
   address: Address
   phone: String
   status: String
@@ -52,7 +53,7 @@ input CreateAffiliateInput {
   name: String
   cpf: String
   email: String
-  gender: String
+  gender: AffiliateGender
   address: AddressInput
   phone: String
 }
@@ -68,5 +69,12 @@ input ApproveOrDenyAffiliate {
 
 enum AffiliateStatus {
   APPROVED
+  PENDING
   DENIED
+}
+
+enum AffiliateGender {
+  MALE
+  FEMALE
+  UNDECLARED
 }

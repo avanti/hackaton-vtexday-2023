@@ -3,6 +3,9 @@
     "affiliateId": {
       "type": "string"
     },
+    "affiliateCode": {
+      "type": "string"
+    },
     "name": {
       "type": "string"
     },
@@ -59,6 +62,7 @@
   "required": [],
   "v-indexed": [
     "affiliateId",
+    "affiliateCode",
     "cpf",
     "email"
   ],
@@ -67,6 +71,7 @@
     "allowGetAll": true,
     "publicRead": [
       "affiliateId",
+      "affiliateCode",
       "name",
       "sponsor",
       "cpf",
@@ -77,6 +82,7 @@
     ],
     "publicWrite": [
       "affiliateId",
+      "affiliateCode",
       "name",
       "sponsor",
       "cpf",
@@ -87,6 +93,7 @@
     ],
     "publicFilter": [
       "affiliateId",
+      "affiliateCode",
       "name",
       "sponsor",
       "cpf",

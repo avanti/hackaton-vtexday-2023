@@ -2,8 +2,8 @@ import { ResolverError, NotFoundError } from '@vtex/api'
 
 import type { IAffiliate } from '../typings'
 
-export const getAffiliateByIdLogic = async (
-  affiliateId: string,
+export const getAffiliateByCodeLogic = async (
+  affiliateCode: string,
   ctx: Context
 ): Promise<IAffiliate> => {
   const {
@@ -23,14 +23,16 @@ export const getAffiliateByIdLogic = async (
       fields: [
         'affiliateId,affiliateCode,sponsor,name,cpf,email,gender,address,phone,status',
       ],
-      where: `affiliateId=${affiliateId}`,
+      where: `affiliateCode=${affiliateCode}`,
     })
   } catch {
-    throw new ResolverError('Failed to get affiliate')
+    throw new ResolverError(
+      `Failed to get affiliate with code ${affiliateCode}`
+    )
   }
 
   if (!affiliateSearch.length) {
-    throw new NotFoundError(`Affiliate with ID ${affiliateId} not found`)
+    throw new NotFoundError(`Affiliate with code ${affiliateCode} not found`)
   }
 
   return affiliateSearch[0]

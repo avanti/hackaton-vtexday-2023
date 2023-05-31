@@ -5,11 +5,9 @@ import { Clients } from './clients'
 import { createAffiliate } from './resolvers/createAffiliate'
 import { getAffiliateById } from './resolvers/getAffiliateById'
 import { getAffiliates } from './resolvers/getAffiliates'
-import { createAffiliateCode } from './resolvers/createAffiliateCode'
-import { getAffiliateCode } from './resolvers/getAffiliateCode'
-import { getAffiliateCodes } from './resolvers/getAffiliateCodes'
 import { setupApp } from './resolvers/setupApp'
 import { provideSuppliersUsingMiniCart } from './middlewares/suppliers'
+import { getAffiliateByCode } from './resolvers/getAffiliateByCode'
 
 const MEDIUM_TIMEOUT_MS = 2 * 1000
 
@@ -36,12 +34,10 @@ export default new Service<Clients, RecorderState, ParamsContext>({
       Query: {
         getAffiliates,
         getAffiliateById,
-        getAffiliateCodes,
-        getAffiliateCode,
+        getAffiliateByCode,
       },
       Mutation: {
         createAffiliate,
-        createAffiliateCode,
         setupApp,
       },
     },

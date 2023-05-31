@@ -1,8 +1,0 @@
-query getAffiliateCode($code: String) {
-  getAffiliateCode(code: $code)
-    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
-    code
-    affiliateId
-    expiresAt
-  }
-}

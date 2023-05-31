@@ -1,5 +1,5 @@
-query getAffiliateById($affiliateId: String) {
-  getAffiliateById(affiliateId: $affiliateId)
+query getAffiliateByCode($affiliateCode: String) {
+  getAffiliateByCode(affiliateCode: $affiliateCode)
     @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
     affiliateId
     affiliateCode

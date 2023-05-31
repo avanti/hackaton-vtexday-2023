@@ -1,5 +1,5 @@
 import { getAffiliateByIdLogic } from '../logic/getAffiliateById'
-import type { ISearchInput, ISearchResult, IAffiliate } from '../typings'
+import type { IAffiliate } from '../typings'
 
 export const getAffiliateById = async (
   _: unknown,
