@@ -1,0 +1,62 @@
+{
+  "name": "avanti-vtexio-boilerplate-backend",
+  "vendor": "avantivtexio",
+  "version": "0.0.0",
+  "title": "avanti-vtexio-boilerplate-backend",
+  "description": "avanti-vtexio-boilerplate-backend",
+  "dependencies": {
+    "vtex.styleguide": "9.x",
+    "vtex.css-handles": "0.x"
+  },
+  "builders": {
+    "messages": "1.x",
+    "react": "3.x",
+    "store": "0.x",
+    "node": "6.x",
+    "admin": "0.x",
+    "graphql": "1.x"
+  },
+  "credentialType": "absolute",
+  "policies": [
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "httpstat.us",
+        "path": "*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "masterws.stg.hanzo.com.br",
+        "path": "*"
+      }
+    },
+    {
+      "name": "colossus-fire-event"
+    },
+    {
+      "name": "colossus-write-logs"
+    },
+    {
+      "name": "ADMIN_DS"
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "api.vtex.com",
+        "path": "/dataentities/*"
+      }
+    }
+  ],
+  "billingOptions": {
+    "type": "free",
+    "support": {
+      "url": "https://penseavanti.com.br/"
+    }
+  },
+  "registries": [
+    "smartcheckout"
+  ],
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}
