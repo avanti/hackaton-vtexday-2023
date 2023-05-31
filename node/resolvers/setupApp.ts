@@ -3,7 +3,13 @@ import { ResolverError } from '@vtex/api'
 import affiliateSuppliers from '../../mdv2/affiliateSuppliers.json'
 import affiliateSuppliersCodes from '../../mdv2/affiliateSuppliersCodes.json'
 
-export async function setupApp(_: unknown, __: unknown, ctx: Context) {
+export async function setupApp(
+  _: unknown,
+  __: unknown,
+  ctx: Context
+): Promise<{
+  success: boolean
+}> {
   const {
     clients: { masterdata },
   } = ctx

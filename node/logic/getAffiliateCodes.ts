@@ -1,22 +1,20 @@
 import { ResolverError } from '@vtex/api'
 
-export interface IGetAffiliateCodesInput {
-  page?: number
-  pageSize?: number
-  where?: string
-}
+import type { IAffiliateCode, ISearchResult, ISearchInput } from '../typings'
 
 export const getAffiliateCodesLogic = async (
-  input: IGetAffiliateCodesInput,
+  input: ISearchInput,
   ctx: Context
-) => {
+): Promise<ISearchResult<IAffiliateCode>> => {
   const { page, pageSize, where } = input
   const {
     clients: { masterdata },
   } = ctx
 
   try {
-    const response = await masterdata.searchDocumentsWithPaginationInfo({
+    const response = await masterdata.searchDocumentsWithPaginationInfo<
+      IAffiliateCode
+    >({
       dataEntity: 'affiliateSuppliersCodes',
       schema: 'affiliateSuppliersCodes',
       pagination: {

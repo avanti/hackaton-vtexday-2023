@@ -18,8 +18,8 @@ export default () => {
 
   useEffect(() => {
     fetch('/_v/boilerplate-node/example')
-      .then(response => response.json())
-      .then(json => setRESTData(json))
+      .then((response) => response.json())
+      .then((json) => setRESTData(json))
   }, [])
 
   useEffect(() => {

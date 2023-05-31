@@ -1,15 +1,11 @@
 import { ResolverError } from '@vtex/api'
 
-export interface ICreateAffiliateCodeInput {
-  code: string
-  affiliateId: string
-  expiresAt: string
-}
+import type { IAffiliateCode } from '../typings'
 
 export const createAffiliateCodeLogic = async (
-  input: ICreateAffiliateCodeInput,
+  input: IAffiliateCode,
   ctx: Context
-) => {
+): Promise<IAffiliateCode> => {
   const {
     clients: { masterdata },
   } = ctx

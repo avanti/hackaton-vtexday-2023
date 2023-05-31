@@ -1,11 +1,11 @@
 import { createAffiliateCodeLogic } from '../logic/createAffiliateCode'
-import type { ICreateAffiliateCodeInput } from '../logic/createAffiliateCode'
+import type { IAffiliateCode } from '../typings'
 
 export const createAffiliateCode = async (
   _: unknown,
-  { input }: { input: ICreateAffiliateCodeInput },
+  { input }: { input: IAffiliateCode },
   ctx: Context
-) => {
+): Promise<IAffiliateCode> => {
   try {
     const response = await createAffiliateCodeLogic(input, ctx)
 
