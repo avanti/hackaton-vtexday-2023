@@ -1,12 +1,15 @@
 import type { ParamsContext, RecorderState, ServiceContext } from '@vtex/api'
-import { Service } from '@vtex/api'
+import { method, Service } from '@vtex/api'
 
 import { Clients } from './clients'
-import { getAffiliates } from './resolvers/getAffiliates'
-import { getAffiliateCodes } from './resolvers/getAffiliateCodes'
 import { createAffiliate } from './resolvers/createAffiliate'
+import { getAffiliateById } from './resolvers/getAffiliateById'
+import { getAffiliates } from './resolvers/getAffiliates'
 import { createAffiliateCode } from './resolvers/createAffiliateCode'
+import { getAffiliateCode } from './resolvers/getAffiliateCode'
+import { getAffiliateCodes } from './resolvers/getAffiliateCodes'
 import { setupApp } from './resolvers/setupApp'
+import { provideSuppliersUsingMiniCart } from './middlewares/suppliers'
 
 const MEDIUM_TIMEOUT_MS = 2 * 1000
 
@@ -23,11 +26,18 @@ export default new Service<Clients, RecorderState, ParamsContext>({
       },
     },
   },
+  /* routes: {
+    getSuppliersByMiniCart: method({
+      POST: [provideSuppliersUsingMiniCart],
+    }),
+  }, */
   graphql: {
     resolvers: {
       Query: {
         getAffiliates,
+        getAffiliateById,
         getAffiliateCodes,
+        getAffiliateCode,
       },
       Mutation: {
         createAffiliate,
