@@ -1,3 +1,5 @@
+import { Pagination } from './search'
+
 export interface Affiliate {
   affiliateId: string
   affiliateCode?: string
@@ -19,4 +21,20 @@ export interface Affiliate {
     state: string
   }
   phone: string
+}
+
+export interface AffiliateOrder {
+  orderId: string
+  orderDate: string
+  orderTotalValue: number
+  status: string
+  affiliate: Affiliate
+  sponsor: Affiliate | null
+}
+
+export interface GetAffiliateOrdersInput {
+  affiliateId: string
+  ordersFrom: 'AFFILIATE' | 'SUBAFFILIATES' | 'ALL'
+  pagination: Pagination
+  sinceDate: string
 }
