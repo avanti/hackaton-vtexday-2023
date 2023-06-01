@@ -1,22 +1,21 @@
-import { IAffiliate, IAffiliateCode } from './affiliate'
+import { Affiliate } from './affiliate'
 import {
   Item,
   MiniCart,
   RecipientsBuilderPayload,
   Seller,
 } from './protocolRequest'
-import { IPagination, ISearchResult, ISearchInput } from './search'
+import { Pagination, ISearchResult, SeachInput } from './search'
 import { Supplier } from './supplier'
 
 export {
-  IAffiliate,
-  IAffiliateCode,
+  Affiliate,
   Item,
   MiniCart,
   RecipientsBuilderPayload,
   Seller,
-  IPagination,
+  Pagination,
   ISearchResult,
-  ISearchInput,
+  SeachInput,
   Supplier,
 }

@@ -1,4 +1,4 @@
-export interface IPagination {
+export interface Pagination {
   page: number
   pageSize: number
   total?: number
@@ -6,10 +6,10 @@ export interface IPagination {
 
 export interface ISearchResult<T> {
   data: T[]
-  pagination: IPagination
+  pagination: Pagination
 }
 
-export interface ISearchInput {
+export interface SeachInput {
   page?: number
   pageSize?: number
   where?: string

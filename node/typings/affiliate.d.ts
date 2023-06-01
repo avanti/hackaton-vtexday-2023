@@ -1,4 +1,4 @@
-export interface IAffiliate {
+export interface Affiliate {
   affiliateId: string
   affiliateCode?: string
   sponsor: {
