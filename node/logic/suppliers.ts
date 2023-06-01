@@ -45,13 +45,14 @@ export async function getSuppliersByMiniCart(
       affiliateSponsor = await getAffiliateByIdLogic(sponsor.affiliateId, ctx)
     } catch {
       // TODO: decide if we want to throw any error
+
       return []
     }
   }
 
   const affiliateCommision = affiliateSponsor
-    ? payload.operationValue * 0.3
-    : payload.operationValue * 0.285
+    ? Math.floor(payload.operationValue * 0.3)
+    : Math.floor(payload.operationValue * 0.285)
 
   const suppliers = [
     {
@@ -68,7 +69,7 @@ export async function getSuppliersByMiniCart(
   ]
 
   if (affiliateSponsor) {
-    const sponsorCommision = payload.operationValue * 0.015
+    const sponsorCommision = Math.floor(payload.operationValue * 0.015)
 
     suppliers.push({
       id: affiliateSponsor.affiliateId,
@@ -88,18 +89,17 @@ export async function getSuppliersByMiniCart(
       dataEntity: 'affiliateOrders',
       schema: 'affiliateOrders',
       fields: {
-        orderId: order.orderId,
-        orderDate: order.creationDate,
-        orderTotalValue: order.value,
+        orderId: payload.orderId,
+        orderDate: new Date().toISOString(),
+        orderTotalValue: payload.operationValue,
         status: 'payment-pending',
         affiliate: suppliers[0],
-        sponsor: affiliateSponsor ? suppliers[1] : null,
+        sponsor: affiliateSponsor ? suppliers[1] : {},
       },
     })
   } catch {
     // TODO: decide if we want to throw any error
     return []
   }
-
   return suppliers
 }
