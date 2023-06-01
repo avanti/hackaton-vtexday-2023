@@ -1,6 +1,4 @@
-import { ResolverError } from '@vtex/api'
-
-import affiliateSuppliers from '../../mdv2/affiliateSuppliers.json'
+import { setupAppLogic } from '../logic/setupApp'
 
 export async function setupApp(
   _: unknown,
@@ -9,22 +7,11 @@ export async function setupApp(
 ): Promise<{
   success: boolean
 }> {
-  const {
-    clients: { masterdata },
-  } = ctx
-
   try {
-    await masterdata.createOrUpdateSchema({
-      dataEntity: 'affiliateSuppliers',
-      schemaName: 'affiliateSuppliers',
-      schemaBody: affiliateSuppliers,
-    })
-  } catch (e) {
-    console.log(e)
-    throw new ResolverError('Failed to setup schemas')
-  }
+    const response = await setupAppLogic(ctx)
 
-  return {
-    success: true,
+    return response
+  } catch (e) {
+    throw e
   }
 }

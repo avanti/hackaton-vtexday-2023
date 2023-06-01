@@ -1,4 +1,4 @@
-type Pagination {
+type PaginationResponse {
   page: Int
   pageSize: Int
   total: Int
@@ -6,4 +6,9 @@ type Pagination {
 
 type SetupResponse {
   success: Boolean
+}
+
+input PaginationInput {
+  page: Int
+  pageSize: Int
 }

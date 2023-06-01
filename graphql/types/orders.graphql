@@ -1,0 +1,26 @@
+type AffiliateOrder {
+  orderId: String
+  orderDate: String
+  orderTotalValue: Int
+  status: String
+  affiliate: Affiliate
+  sponsor: Affiliate
+}
+
+type GetAffiliateOrdersResponse {
+  data: [AffiliateOrder]
+  pagination: PaginationResponse
+}
+
+input GetAffiliateOrdersInput {
+  affiliateId: String
+  ordersFrom: OrdersFrom
+  pagination: PaginationInput
+  sinceDate: String
+}
+
+enum OrdersFrom {
+    AFFILIATE
+    SUBAFFILIATES
+    ALL
+}

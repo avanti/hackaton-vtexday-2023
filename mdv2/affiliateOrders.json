@@ -1,0 +1,106 @@
+{
+    "properties": {
+        "orderId": {
+            "type": "string"
+        },
+        "orderDate": {
+            "type": "string"
+        },
+        "orderTotalValue": {
+            "type": "integer"
+        },
+        "status": {
+            "type": "string"
+        },
+        "affiliate": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "integer"
+                },
+                "document": {
+                    "type": "string"
+                },
+                "documentType": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "commissionAmount": {
+                    "type": "integer"
+                },
+                "chargebackLiable": {
+                    "type": "boolean"
+                },
+                "chargeProcesssingFee": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "sponsor": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "integer"
+                },
+                "document": {
+                    "type": "string"
+                },
+                "documentType": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "commissionAmount": {
+                    "type": "integer"
+                },
+                "chargebackLiable": {
+                    "type": "boolean"
+                },
+                "chargeProcesssingFee": {
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    "required": [],
+    "v-indexed": [
+        "orderId",
+        "affiliate",
+        "sponsor"
+    ],
+    "v-default-fields": [],
+    "v-security": {
+        "allowGetAll": true,
+        "publicRead": [
+            "orderId",
+            "affiliate",
+            "sponsor"
+        ],
+        "publicWrite": [
+            "orderId",
+            "affiliate",
+            "sponsor"
+        ],
+        "publicFilter": [
+            "orderId",
+            "affiliate",
+            "sponsor"
+        ]
+    },
+    "v-cache": false
+}
