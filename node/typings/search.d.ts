@@ -4,7 +4,7 @@ export interface Pagination {
   total?: number
 }
 
-export interface ISearchResult<T> {
+export interface SearchResult<T> {
   data: T[]
   pagination: Pagination
 }

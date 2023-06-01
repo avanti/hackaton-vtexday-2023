@@ -5,7 +5,7 @@ import {
   RecipientsBuilderPayload,
   Seller,
 } from './protocolRequest'
-import { Pagination, ISearchResult, SeachInput } from './search'
+import { Pagination, SearchResult, SeachInput } from './search'
 import { Supplier } from './supplier'
 
 export {
@@ -15,7 +15,7 @@ export {
   RecipientsBuilderPayload,
   Seller,
   Pagination,
-  ISearchResult,
+  SearchResult,
   SeachInput,
   Supplier,
 }
