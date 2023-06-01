@@ -1,11 +1,11 @@
 import { getAffiliateByIdLogic } from '../logic/getAffiliateById'
-import type { IAffiliate } from '../typings'
+import type { Affiliate } from '../typings'
 
 export const getAffiliateById = async (
   _: unknown,
   { affiliateId }: { affiliateId: string },
   ctx: Context
-): Promise<IAffiliate> => {
+): Promise<Affiliate> => {
   try {
     const response = await getAffiliateByIdLogic(affiliateId, ctx)
 

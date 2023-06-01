@@ -1,12 +1,12 @@
 import { ResolverError } from '@vtex/api'
 
-import type { IAffiliate } from '../typings'
+import type { Affiliate } from '../typings'
 import { generateAffiliateCode } from '../helpers/generateAffiliateCode'
 
 export const createAffiliateLogic = async (
-  input: IAffiliate,
+  input: Affiliate,
   ctx: Context
-): Promise<IAffiliate> => {
+): Promise<Affiliate> => {
   const {
     clients: { masterdata /* , acquirer  */ },
   } = ctx
