@@ -36,5 +36,5 @@ export interface GetAffiliateOrdersInput {
   affiliateId: string
   ordersFrom: 'AFFILIATE' | 'SUBAFFILIATES' | 'ALL'
   pagination: Pagination
-  sinceDate: string
+  dateFrom: string
 }

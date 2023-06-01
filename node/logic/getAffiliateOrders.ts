@@ -14,7 +14,7 @@ export const getAffiliateOrdersLogic = async (
     affiliateId,
     pagination: { page, pageSize },
     ordersFrom,
-    sinceDate,
+    dateFrom,
   } = input
   const {
     clients: { masterdata },
@@ -36,8 +36,8 @@ export const getAffiliateOrdersLogic = async (
       whereField = `affiliate.id=${affiliateId}`
   }
 
-  if (sinceDate) {
-    whereField = `(${whereField}) AND orderDate>${sinceDate}`
+  if (dateFrom) {
+    whereField = `(${whereField}) AND orderDate>${dateFrom}`
   }
 
   try {

@@ -16,7 +16,7 @@ input GetAffiliateOrdersInput {
   affiliateId: String
   ordersFrom: OrdersFrom
   pagination: PaginationInput
-  sinceDate: String
+  dateFrom: String
 }
 
 enum OrdersFrom {
