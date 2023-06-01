@@ -80,6 +80,7 @@
     "required": [],
     "v-indexed": [
         "orderId",
+        "status",
         "affiliate",
         "sponsor"
     ],
@@ -88,16 +89,25 @@
         "allowGetAll": true,
         "publicRead": [
             "orderId",
+            "orderDate",
+            "orderTotalValue",
+            "status",
             "affiliate",
             "sponsor"
         ],
         "publicWrite": [
             "orderId",
+            "orderDate",
+            "orderTotalValue",
+            "status",
             "affiliate",
             "sponsor"
         ],
         "publicFilter": [
             "orderId",
+            "orderDate",
+            "orderTotalValue",
+            "status",
             "affiliate",
             "sponsor"
         ]
