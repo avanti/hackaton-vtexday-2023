@@ -10,12 +10,7 @@ export const getAffiliateOrdersLogic = async (
   input: GetAffiliateOrdersInput,
   ctx: Context
 ): Promise<SearchResult<AffiliateOrder>> => {
-  const {
-    affiliateId,
-    pagination: { page, pageSize },
-    ordersFrom,
-    dateFrom,
-  } = input
+  const { affiliateId, pagination, ordersFrom, dateFrom } = input
   const {
     clients: { masterdata },
   } = ctx
@@ -47,8 +42,8 @@ export const getAffiliateOrdersLogic = async (
       dataEntity: 'affiliateOrders',
       schema: 'affiliateOrders',
       pagination: {
-        page: page ?? 1,
-        pageSize: pageSize ?? 15,
+        page: pagination?.page ?? 1,
+        pageSize: pagination?.page ?? 15,
       },
       fields: ['orderId,orderDate,orderTotalValue,status,affiliate,sponsor'],
       where: whereField,
