@@ -13,5 +13,9 @@
 }
 
 .inputStyle:focus {
-    border: 2px solid #bbb;
+    border: 1px solid #005CFF;
+}
+
+.inputStyle:focus::placeholder {
+    color: #005CFF;
 }

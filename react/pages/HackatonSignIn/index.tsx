@@ -21,10 +21,60 @@ type Supplier = {
   phone?: string
 }
 
+const FIELDS: Array<{
+  name: keyof Supplier
+  placeholder: string
+  type: string
+  mask: string
+}> = [
+  {
+    name: 'name',
+    placeholder: 'Digite seu Nome',
+    type: 'text',
+    mask: '',
+  },
+  {
+    name: 'cpf',
+    placeholder: 'Digite seu CPF',
+    type: 'text',
+    mask: '999.999.999-99',
+  },
+  {
+    name: 'cep',
+    placeholder: 'Digite seu CEP',
+    type: 'text',
+    mask: '99999-999',
+  },
+  {
+    name: 'address',
+    placeholder: 'Digite seu Endereço',
+    type: 'text',
+    mask: '',
+  },
+  {
+    name: 'addressComplement',
+    placeholder: 'Complemento de endereço',
+    type: 'text',
+    mask: '',
+  },
+  {
+    name: 'email',
+    placeholder: 'Digite seu E-mail',
+    type: 'text',
+    mask: '',
+  },
+  {
+    name: 'phone',
+    placeholder: 'Digite seu Telefone',
+    type: 'text',
+    mask: '(99) 99999-9999',
+  },
+]
+
 export default () => {
   //const [GraphQLData, setGraphQLData] = useState(null)
 
-  const [supplier, setSupplier] = useState<Supplier>()
+  const [supplier, setSupplier] = useState<Supplier>({})
 
   /*const { data, error } = useQuery(EXAMPLE, {
     ssr: false,
@@ -39,12 +89,42 @@ export default () => {
     event: React.ChangeEvent<HTMLInputElement>,
     field: keyof Supplier,
   ) => {
-    console.log(event.currentTarget.value)
     const value = event.currentTarget.value
+
     setSupplier((prevState) => ({
       ...prevState,
       [field]: value,
     }))
+    console.log({ supplier })
+  }
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const normalizedValues = Object.entries(supplier)
+      .map(([key, value]) => {
+        if (['cep', 'cpf', 'phone'].includes(key)) {
+          const normalizedValue = value?.replace(/\D/g, '')
+          return { key, value: normalizedValue } as {
+            key: keyof Supplier
+            value: string
+          }
+        }
+
+        return { key, value } as { key: keyof Supplier; value: string }
+      })
+      .reduce(function (collector, field) {
+        return Object.assign({}, collector, {
+          [field.key]: field.value,
+        })
+      }, {})
+
+    console.log({ normalizedValues })
+    /*if (['cep', 'cpf', 'phone'].includes(field)) {
+      const normalizedValue = value.replace(/\D/g, '')
+    }*/
+
+    fetch
   }
 
   return (
@@ -61,70 +141,22 @@ export default () => {
         </h2>
       </header>
 
-      <main>
-        <form>
-          {console.log({ supplier })}
-          <Input
-            type="text"
-            placeholder="Digite seu Nome"
-            value={supplier?.name || ''}
-            onChange={(e) => handleInput(e, 'name')}
-            disabled={false}
-          />
-
-          <Input
-            type="text"
-            placeholder="Digite seu CPF"
-            value={supplier?.cpf || ''}
-            onChange={(e) => handleInput(e, 'cpf')}
-            disabled={false}
-          />
-
-          <Input
-            type="text"
-            placeholder="Digite seu CEP"
-            value={supplier?.cpf || ''}
-            onChange={(e) => handleInput(e, 'cep')}
-            disabled={false}
-          />
-
-          <Input
-            type="text"
-            placeholder="Digite seu Endereço"
-            value={supplier?.cpf || ''}
-            onChange={(e) => handleInput(e, 'address')}
-            disabled={false}
-          />
-
-          <Input
-            type="text"
-            placeholder="Complemento de endereço"
-            value={supplier?.cpf || ''}
-            onChange={(e) => handleInput(e, 'addressComplement')}
-            disabled={false}
-          />
-
-          <Input
-            type="text"
-            placeholder="Digite seu E-mail"
-            value={supplier?.cpf || ''}
-            onChange={(e) => handleInput(e, 'email')}
-            disabled={false}
-          />
-
-          <Input
-            type="text"
-            placeholder="Digite seu Telefone"
-            value={supplier?.cpf || ''}
-            onChange={(e) => handleInput(e, 'phone')}
-            disabled={false}
-          />
-
-          <button onClick={() => alert('yay')}>submit</button>
+      <main className={cn(styles.main)}>
+        <form onSubmit={(e) => handleSubmit(e)} className={cn(styles.form)}>
+          {FIELDS.map((field) => (
+            <Input
+              mask={field.mask}
+              type={field.type}
+              placeholder={field.placeholder}
+              value={!!supplier ? supplier[field.name] : ''}
+              onChange={(e) => handleInput(e, field.name)}
+            />
+          ))}
+          <button type="submit" className={cn(styles.button)}>
+            Cadastrar
+          </button>
         </form>
       </main>
-
-      <footer>My app footer</footer>
     </section>
   )
 }
