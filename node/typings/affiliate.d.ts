@@ -1,6 +1,7 @@
 import { Pagination } from './search'
 
 export interface Affiliate {
+  id?: string
   affiliateId: string
   affiliateCode?: string
   sponsor: {
