@@ -1,0 +1,10 @@
+.affiliatedLink {
+    color:#3f3f40;
+    text-decoration: none;
+}
+
+.affiliatedLinkContainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}

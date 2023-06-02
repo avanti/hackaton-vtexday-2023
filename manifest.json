@@ -6,7 +6,8 @@
   "description": "avanti-vtexio-boilerplate-backend",
   "dependencies": {
     "vtex.styleguide": "9.x",
-    "vtex.css-handles": "0.x"
+    "vtex.css-handles": "0.x",
+    "vtex.session-client": "1.x"
   },
   "builders": {
     "messages": "1.x",
