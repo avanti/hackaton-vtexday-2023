@@ -93,8 +93,15 @@ export const createAffiliateLogic = async (
     })
 
     return {
-      affiliateCode: generatedAffiliateCode,
       ...input,
+      affiliateCode: generatedAffiliateCode,
+      sponsor: sponsorFullData
+        ? {
+            affiliateId: sponsorFullData.affiliateId,
+            email: sponsorFullData.email,
+          }
+        : (null as any),
+      status: 'PENDING',
     }
   } catch {
     throw new ResolverError('Failed to create affiliate')
