@@ -15,9 +15,9 @@ export async function orderReceiver(
 
   const order = await oms.order(orderId)
 
-  const affiliateSuppliersCustomData = checkCustomData(order)
+  const affiliateCodeFromOrder = checkCustomData(order)
 
-  if (!affiliateSuppliersCustomData) {
+  if (!affiliateCodeFromOrder) {
     return
   }
 

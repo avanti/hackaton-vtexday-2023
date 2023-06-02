@@ -34,19 +34,36 @@ export const createAffiliateLogic = async (
     )
   }
 
+  let sponsorFullData: Affiliate | undefined
+
   if (input.sponsor) {
-    const { affiliateId } = input.sponsor
-    let sponsorFullData: Affiliate
+    const sponsorEmail = input.sponsor as string
+    let sponsorSearch: Affiliate[]
 
     try {
-      sponsorFullData = await getAffiliateByIdLogic(affiliateId, ctx)
+      sponsorSearch = await masterdata.searchDocuments<Affiliate>({
+        dataEntity: 'affiliateSuppliers',
+        schema: 'affiliateSuppliers',
+        fields: ['_all'],
+        pagination: {
+          page: 1,
+          pageSize: 1,
+        },
+        where: `email=${sponsorEmail}`,
+      })
     } catch {
-      throw new NotFoundError(`Sponsor ${affiliateId} not found`)
+      throw new NotFoundError(`Failed to get sponsor`)
     }
 
-    if (sponsorFullData.status !== 'APPROVED') {
-      throw new NotFoundError(`Sponsor ${affiliateId} not approved`)
+    if (!sponsorSearch.length) {
+      throw new NotFoundError(`Sponsor with email ${sponsorEmail} not found`)
     }
+
+    if (sponsorSearch[0].status !== 'APPROVED') {
+      throw new NotFoundError(`Sponsor ${sponsorEmail} not approved`)
+    }
+
+    sponsorFullData = sponsorSearch[0]
   }
 
   /* here we will create the affiliate at the acquirer
@@ -65,6 +82,12 @@ export const createAffiliateLogic = async (
       fields: {
         ...input,
         affiliateCode: generatedAffiliateCode,
+        sponsor: sponsorFullData
+          ? {
+              affiliateId: sponsorFullData.affiliateId,
+              email: sponsorFullData.email,
+            }
+          : null,
         status: 'PENDING',
       },
     })

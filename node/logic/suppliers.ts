@@ -1,4 +1,9 @@
-import type { Affiliate, RecipientsBuilderPayload, Supplier } from '../typings'
+import type {
+  Affiliate,
+  RecipientsBuilderPayload,
+  Supplier,
+  Sponsor,
+} from '../typings'
 import { getAffiliateByCodeLogic } from './getAffiliateByCode'
 import { getAffiliateByIdLogic } from './getAffiliateById'
 import { checkCustomData } from '../helpers/checkCustomData'
@@ -16,23 +21,23 @@ export async function getSuppliersByMiniCart(
   try {
     const order = await ctx.clients.oms.order(payload.orderId)
 
-    const affiliatesCustomData = checkCustomData(order)
+    const affiliateCodeFromOrder = checkCustomData(order)
 
-    if (!order.customData || !affiliatesCustomData) {
+    if (!order.customData || !affiliateCodeFromOrder) {
       return []
     }
 
-    const affiliate = await getAffiliateByCodeLogic(
-      affiliatesCustomData.fields.code,
-      ctx
-    )
+    const affiliate = await getAffiliateByCodeLogic(affiliateCodeFromOrder, ctx)
 
     const { affiliateId, cpf, name, sponsor } = affiliate
 
     let affiliateSponsor: Affiliate | undefined
 
     if (sponsor) {
-      affiliateSponsor = await getAffiliateByIdLogic(sponsor.affiliateId, ctx)
+      affiliateSponsor = await getAffiliateByIdLogic(
+        (sponsor as Sponsor).affiliateId,
+        ctx
+      )
     }
 
     const affiliateCommision = affiliateSponsor

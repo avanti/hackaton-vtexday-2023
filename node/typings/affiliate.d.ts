@@ -4,10 +4,7 @@ export interface Affiliate {
   id?: string
   affiliateId: string
   affiliateCode?: string
-  sponsor: {
-    affiliateId: string
-    email: string
-  }
+  sponsor: Sponsor | string
   name: string
   cpf: string
   email: string
@@ -23,6 +20,11 @@ export interface Affiliate {
   }
   phone: string
   status: 'PENDING' | 'APPROVED' | 'DENIED'
+}
+
+export interface Sponsor {
+  affiliateId: string
+  email: string
 }
 
 export interface AffiliateOrder {

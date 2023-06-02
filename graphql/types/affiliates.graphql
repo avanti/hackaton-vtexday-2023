@@ -27,13 +27,13 @@ type Address {
 }
 
 input AddressInput {
-  postalCode: String
-  street: String
-  number: String
-  neighborhood: String
-  complement: String
-  city: String
-  state: String
+  postalCode: String!
+  street: String!
+  number: String!
+  neighborhood: String!
+  complement: String!
+  city: String!
+  state: String!
 }
 
 type GetAffiliatesResponse {
@@ -48,19 +48,14 @@ input GetAffiliatesInput {
 }
 
 input CreateAffiliateInput {
-  affiliateId: String
-  sponsor: SponsorInput
-  name: String
-  cpf: String
-  email: String
-  gender: AffiliateGender
-  address: AddressInput
-  phone: String
-}
-
-input SponsorInput {
-  affiliateId: String
-  email: String
+  affiliateId: String!
+  sponsor: String
+  name: String!
+  cpf: String!
+  email: String!
+  gender: AffiliateGender!
+  address: AddressInput!
+  phone: String!
 }
 
 input ApproveOrDenyAffiliate {
