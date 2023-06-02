@@ -1,4 +1,5 @@
 import { ResolverError } from '@vtex/api'
+import type { App } from '@vtex/clients'
 
 import affiliateSuppliers from '../../mdv2/affiliateSuppliers.json'
 import affiliateOrders from '../../mdv2/affiliateOrders.json'
@@ -6,11 +7,12 @@ import type { SetupAppResponse } from '../typings'
 
 export async function setupAppLogic(ctx: Context): Promise<SetupAppResponse> {
   const {
-    clients: { masterdata },
+    clients: { masterdata, checkout },
   } = ctx
 
   let affiliateSuppliersStatus: string
   let affiliateOrdersStatus: string
+  let customDataStatus: string
 
   try {
     await masterdata.createOrUpdateSchema({
@@ -48,12 +50,59 @@ export async function setupAppLogic(ctx: Context): Promise<SetupAppResponse> {
     }
   }
 
+  try {
+    const currentOrderFormConfiguration = await checkout.getOrderFormConfiguration()
+
+    let newApps: App[] = []
+
+    if (currentOrderFormConfiguration?.apps) {
+      newApps = currentOrderFormConfiguration?.apps.slice()
+
+      const previousConfigIndex = newApps?.findIndex(
+        (app) => app.id === 'affiliates-program'
+      )
+
+      if (previousConfigIndex === -1) {
+        newApps?.push({
+          id: 'affiliates-program',
+          fields: ['affiliateCode'],
+          major: 0,
+        })
+        customDataStatus = 'CREATED'
+      } else {
+        newApps[previousConfigIndex] = {
+          id: 'affiliates-program',
+          fields: ['affiliateCode'],
+          major: 0,
+        }
+        customDataStatus = 'UPDATED'
+      }
+    } else {
+      newApps?.push({
+        id: 'affiliates-program',
+        fields: ['affiliateCode'],
+        major: 0,
+      })
+      customDataStatus = 'CREATED'
+    }
+
+    await checkout.setOrderFormConfiguration({
+      ...currentOrderFormConfiguration,
+      apps: newApps,
+    })
+  } catch (e) {
+    customDataStatus = 'FAILED'
+  }
+
   return {
     affiliateSuppliers: {
       status: affiliateSuppliersStatus,
     },
     affiliateOrders: {
       status: affiliateOrdersStatus,
+    },
+    customData: {
+      status: customDataStatus,
     },
   }
 }
