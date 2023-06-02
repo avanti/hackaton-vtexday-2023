@@ -70,19 +70,21 @@ A instalação deste app deve ser algo fluido e rápido de se fazer:
 
 ...
 
-## Usabilidade:
+## Backend
 
-Importe o ...:
+O backend possui, além da lógica responsável pelo Supplier Protocol, uma camada GraphQL para gerenciamento de afiliados.
 
-```ts
-import { ... } from '...'
-```
+| Queries              |                                                                                                                                                                                                                         |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `getAffiliates`      | Retorna todos os afiliados cadastrado. Recebe paginação e campo aberto de busca no formato do Master Data.                                                                                                              |
+| `getAffiliateById`   | Retorna um afiliado baseado em seu ID.                                                                                                                                                                                  |
+| `getAffiliateByCode` | Retorna um afiliado baseado em seu código.                                                                                                                                                                              |
+| `getAffiliateOrders` | Retorna os pedidos onde foram utilizados códigos de afiliado. Recebe o ID do afiliado, paginação, filtro de data e indicação se deve retornar somente os pedidos do afiliado, somente os de seus subafiliados ou ambos. |
 
-...
-
----
-
-### **_Pronto, Seu app foi instalado com sucesso! :)_**
+| Mutations         |                                                                                                                                                                              |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `createAffiliate` | Cria um novo afiliado na loja.                                                                                                                                               |
+| `setupApp`        | Faz o setup dos schemas necessários para o funcionamento do app. Só precisa ser executada em lojas que ainda não tiveram setup ou que estão com versões antigas dos schemas. |
 
 ---
 

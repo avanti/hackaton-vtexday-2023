@@ -1,11 +1,11 @@
 import { ResolverError } from '@vtex/api'
 
-import type { IAffiliate, ISearchResult, ISearchInput } from '../typings'
+import type { Affiliate, SearchResult, SearchInput } from '../typings'
 
 export const getAffiliatesLogic = async (
-  input: ISearchInput,
+  input: SearchInput,
   ctx: Context
-): Promise<ISearchResult<IAffiliate>> => {
+): Promise<SearchResult<Affiliate>> => {
   const { page, pageSize, where } = input
   const {
     clients: { masterdata },
@@ -13,7 +13,7 @@ export const getAffiliatesLogic = async (
 
   try {
     const response = await masterdata.searchDocumentsWithPaginationInfo<
-      IAffiliate
+      Affiliate
     >({
       dataEntity: 'affiliateSuppliers',
       schema: 'affiliateSuppliers',

@@ -1,19 +1,19 @@
 import { ResolverError, NotFoundError } from '@vtex/api'
 
-import type { IAffiliate } from '../typings'
+import type { Affiliate } from '../typings'
 
 export const getAffiliateByIdLogic = async (
   affiliateId: string,
   ctx: Context
-): Promise<IAffiliate> => {
+): Promise<Affiliate> => {
   const {
     clients: { masterdata },
   } = ctx
 
-  let affiliateSearch: IAffiliate[]
+  let affiliateSearch: Affiliate[]
 
   try {
-    affiliateSearch = await masterdata.searchDocuments<IAffiliate>({
+    affiliateSearch = await masterdata.searchDocuments<Affiliate>({
       dataEntity: 'affiliateSuppliers',
       schema: 'affiliateSuppliers',
       pagination: {

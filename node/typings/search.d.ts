@@ -1,15 +1,18 @@
-export interface IPagination {
+export interface Pagination {
   page: number
   pageSize: number
-  total?: number
 }
 
-export interface ISearchResult<T> {
+export interface PaginationWithTotal extends Pagination {
+  total: number
+}
+
+export interface SearchResult<T> {
   data: T[]
-  pagination: IPagination
+  pagination: PaginationWithTotal
 }
 
-export interface ISearchInput {
+export interface SearchInput {
   page?: number
   pageSize?: number
   where?: string

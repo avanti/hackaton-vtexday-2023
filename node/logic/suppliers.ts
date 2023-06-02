@@ -1,25 +1,26 @@
-import type { IAffiliate, RecipientsBuilderPayload, Supplier } from '../typings'
+import type { Affiliate, RecipientsBuilderPayload, Supplier } from '../typings'
 import { getAffiliateByCodeLogic } from './getAffiliateByCode'
 import { getAffiliateByIdLogic } from './getAffiliateById'
-
-interface ICustomApp {
-  id: string
-  fields: Record<string, unknown>
-}
+import { checkCustomData } from '../helpers/checkCustomData'
 
 export async function getSuppliersByMiniCart(
   payload: RecipientsBuilderPayload,
   ctx: Context
 ): Promise<Supplier[]> {
-  const order = await ctx.clients.oms.order(payload.orderId)
+  let order
+
+  try {
+    order = await ctx.clients.oms.order(payload.orderId)
+  } catch {
+    // TODO: decide if we want to throw any error
+    return []
+  }
 
   if (!order.customData || !payload.operationValue) {
     return []
   }
 
-  const affiliatesCustomData = order.customData.customApps.find(
-    (app: ICustomApp) => app.id === 'avanti-vtexio-boilerplate-backend'
-  )
+  const affiliatesCustomData = checkCustomData(order)
 
   if (!affiliatesCustomData) {
     return []
@@ -37,21 +38,21 @@ export async function getSuppliersByMiniCart(
 
   const { affiliateId, cpf, name, sponsor } = affiliate
 
-  let affiliateSponsor: IAffiliate | undefined
+  let affiliateSponsor: Affiliate | undefined
 
   if (sponsor) {
     try {
       affiliateSponsor = await getAffiliateByIdLogic(sponsor.affiliateId, ctx)
     } catch {
+      // TODO: decide if we want to throw any error
+
       return []
     }
   }
 
   const affiliateCommision = affiliateSponsor
-    ? payload.operationValue * 0.3
-    : payload.operationValue * 0.285
-
-  const sponsorCommision = affiliateSponsor ? payload.operationValue * 0.015 : 0
+    ? Math.floor(payload.operationValue * 0.3)
+    : Math.floor(payload.operationValue * 0.285)
 
   const suppliers = [
     {
@@ -68,6 +69,8 @@ export async function getSuppliersByMiniCart(
   ]
 
   if (affiliateSponsor) {
+    const sponsorCommision = Math.floor(payload.operationValue * 0.015)
+
     suppliers.push({
       id: affiliateSponsor.affiliateId,
       name: affiliateSponsor.name,
@@ -81,5 +84,22 @@ export async function getSuppliersByMiniCart(
     })
   }
 
+  try {
+    await ctx.clients.masterdata.createDocument({
+      dataEntity: 'affiliateOrders',
+      schema: 'affiliateOrders',
+      fields: {
+        orderId: payload.orderId,
+        orderDate: new Date().toISOString(),
+        orderTotalValue: payload.operationValue,
+        status: 'payment-pending',
+        affiliate: suppliers[0],
+        sponsor: affiliateSponsor ? suppliers[1] : {},
+      },
+    })
+  } catch {
+    // TODO: decide if we want to throw any error
+    return []
+  }
   return suppliers
 }

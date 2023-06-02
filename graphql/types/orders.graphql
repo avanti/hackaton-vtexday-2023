@@ -1,0 +1,38 @@
+type AffiliateOrder {
+  orderId: String
+  orderDate: String
+  orderTotalValue: Int
+  status: String
+  affiliate: AffiliateSupplier
+  sponsor: AffiliateSupplier
+}
+
+type AffiliateSupplier {
+  id: String
+  name: String
+  documentType: String
+  document: String
+  role: String
+  amount: Int
+  commissionAmount: Int
+  chargeProcesssingFee: Boolean
+  chargebackLiable: Boolean
+}
+
+type GetAffiliateOrdersResponse {
+  data: [AffiliateOrder]
+  pagination: PaginationResponse
+}
+
+input GetAffiliateOrdersInput {
+  affiliateId: String
+  ordersFrom: OrdersFrom
+  pagination: PaginationInput
+  dateFrom: String
+}
+
+enum OrdersFrom {
+    AFFILIATE
+    SUBAFFILIATES
+    ALL
+}

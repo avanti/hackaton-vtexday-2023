@@ -38,7 +38,7 @@ input AddressInput {
 
 type GetAffiliatesResponse {
   data: [Affiliate]
-  pagination: Pagination
+  pagination: PaginationResponse
 }
 
 input GetAffiliatesInput {
