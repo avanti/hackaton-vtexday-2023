@@ -83,3 +83,14 @@ input ApproveOrDenyAffiliateInput {
   affiliateId: String
   approve: Boolean
 }
+
+type SubAffiliatesInfo {
+  name: String
+  sold: Int
+  status: AffiliateStatus
+}
+
+input GetSubAffiliatesDataInput {
+  affiliateId: String
+  pagination: PaginationInput
+}

@@ -2,7 +2,9 @@ import {
   Affiliate,
   AffiliateOrder,
   GetAffiliateOrdersInput,
+  GetSubAffiliatesDataInput,
   ApproveOrDenyAffiliateInput,
+  SubAffiliatesInfo,
 } from './affiliate'
 import {
   Item,
@@ -23,6 +25,7 @@ export {
   Affiliate,
   AffiliateOrder,
   GetAffiliateOrdersInput,
+  GetSubAffiliatesDataInput,
   ApproveOrDenyAffiliateInput,
   Item,
   MiniCart,

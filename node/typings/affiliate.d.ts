@@ -45,3 +45,14 @@ export interface ApproveOrDenyAffiliateInput {
   affiliateId: string
   approve: boolean
 }
+
+export interface GetSubAffiliatesDataInput {
+  affiliateId: string
+  pagination: Pagination
+}
+
+export interface SubAffiliatesInfo {
+  name: string
+  sold: number
+  status: 'PENDING' | 'APPROVED' | 'DENIED'
+}

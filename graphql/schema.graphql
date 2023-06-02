@@ -3,6 +3,7 @@ type Query {
   getAffiliateById(affiliateId: String): Affiliate
   getAffiliateByCode(affiliateCode: String): Affiliate
   getAffiliateOrders(input: GetAffiliateOrdersInput): GetAffiliateOrdersResponse
+  getSubAffiliatesData(input: GetSubAffiliatesDataInput): [SubAffiliatesInfo]
 }
 
 type Mutation {
