@@ -51,7 +51,9 @@ export async function setupAppLogic(ctx: Context): Promise<SetupAppResponse> {
   }
 
   try {
-    const currentOrderFormConfiguration = await checkout.getOrderFormConfiguration()
+    const currentOrderFormConfiguration = await checkout.getOrderFormConfiguration(
+      'ADMIN_TOKEN'
+    )
 
     let newApps: App[] = []
 
@@ -86,11 +88,15 @@ export async function setupAppLogic(ctx: Context): Promise<SetupAppResponse> {
       customDataStatus = 'CREATED'
     }
 
-    await checkout.setOrderFormConfiguration({
-      ...currentOrderFormConfiguration,
-      apps: newApps,
-    })
+    await checkout.setOrderFormConfiguration(
+      {
+        ...currentOrderFormConfiguration,
+        apps: newApps,
+      },
+      'ADMIN_TOKEN'
+    )
   } catch (e) {
+    console.log(e)
     customDataStatus = 'FAILED'
   }
 
