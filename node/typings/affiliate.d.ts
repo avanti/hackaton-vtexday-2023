@@ -26,6 +26,7 @@ export interface Affiliate {
 }
 
 export interface AffiliateOrder {
+  id?: string
   orderId: string
   orderDate: string
   orderTotalValue: number
