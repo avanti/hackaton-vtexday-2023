@@ -5,4 +5,7 @@ export interface SetupAppResponse {
   affiliateOrders: {
     status: string
   }
+  customData: {
+    status: string
+  }
 }

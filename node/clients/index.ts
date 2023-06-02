@@ -1,15 +1,18 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { IOClients } from '@vtex/api'
-import { OMS } from '@vtex/clients'
+import { OMS, Checkout } from '@vtex/clients'
 
 import { Acquirer } from './acquirer'
 
 export class Clients extends IOClients {
-  public get acquirer() {
+  public get acquirer(): Acquirer {
     return this.getOrSet('acquirer', Acquirer)
   }
 
-  public get oms() {
+  public get oms(): OMS {
     return this.getOrSet('oms', OMS)
+  }
+
+  public get checkout(): Checkout {
+    return this.getOrSet('checkout', Checkout)
   }
 }

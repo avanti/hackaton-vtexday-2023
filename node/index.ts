@@ -9,8 +9,9 @@ import { getAffiliates } from './resolvers/getAffiliates'
 import { setupApp } from './resolvers/setupApp'
 import { getAffiliateByCode } from './resolvers/getAffiliateByCode'
 import { getAffiliateOrders } from './resolvers/getAffiliateOrders'
-import { provideSuppliersUsingMiniCart } from './middlewares/suppliers'
 import { getSubAffiliatesData } from './resolvers/getSubAffiliatesData'
+import { provideSuppliersUsingMiniCart } from './middlewares/suppliers'
+import { orderReceiver } from './middlewares/orderReceiver'
 
 const MEDIUM_TIMEOUT_MS = 2 * 1000
 
@@ -26,6 +27,9 @@ export default new Service<Clients, RecorderState, ParamsContext>({
         timeout: MEDIUM_TIMEOUT_MS,
       },
     },
+  },
+  events: {
+    orderReceiver,
   },
   /* routes: {
     getSuppliersByMiniCart: method({
