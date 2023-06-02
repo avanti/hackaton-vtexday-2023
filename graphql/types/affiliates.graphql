@@ -1,0 +1,80 @@
+type Affiliate {
+  affiliateId: String
+  affiliateCode: String
+  sponsor: Sponsor
+  name: String
+  cpf: String
+  email: String
+  gender: AffiliateGender
+  address: Address
+  phone: String
+  status: String
+}
+
+type Sponsor {
+  affiliateId: String
+  email: String
+}
+
+type Address {
+  postalCode: String
+  street: String
+  number: String
+  neighborhood: String
+  complement: String
+  city: String
+  state: String
+}
+
+input AddressInput {
+  postalCode: String
+  street: String
+  number: String
+  neighborhood: String
+  complement: String
+  city: String
+  state: String
+}
+
+type GetAffiliatesResponse {
+  data: [Affiliate]
+  pagination: PaginationResponse
+}
+
+input GetAffiliatesInput {
+  page: Int
+  pageSize: Int
+  where: String
+}
+
+input CreateAffiliateInput {
+  affiliateId: String
+  sponsor: SponsorInput
+  name: String
+  cpf: String
+  email: String
+  gender: AffiliateGender
+  address: AddressInput
+  phone: String
+}
+
+input SponsorInput {
+  affiliateId: String
+  email: String
+}
+
+input ApproveOrDenyAffiliate {
+  status: AffiliateStatus
+}
+
+enum AffiliateStatus {
+  APPROVED
+  PENDING
+  DENIED
+}
+
+enum AffiliateGender {
+  MALE
+  FEMALE
+  UNDECLARED
+}

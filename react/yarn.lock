@@ -205,9 +205,9 @@ apollo-utilities@1.3.4, apollo-utilities@^1.3.0, apollo-utilities@^1.3.4:
     ts-invariant "^0.4.0"
     tslib "^1.10.0"
 
-"avantivtexio.avanti-vtexio-boilerplate-backend@https://hackatonj--avantivtexio.myvtex.com/_v/private/typings/linked/v1/avantivtexio.avanti-vtexio-boilerplate-backend@0.0.0+build1685538607/public/@types/avantivtexio.avanti-vtexio-boilerplate-backend":
+"avantivtexio.avanti-vtexio-boilerplate-backend@https://hackatonj--vtexdayhackathon3.myvtex.com/_v/private/typings/linked/v1/avantivtexio.avanti-vtexio-boilerplate-backend@0.0.0+build1685710466/public/@types/avantivtexio.avanti-vtexio-boilerplate-backend":
   version "0.0.0"
-  resolved "https://hackatonj--avantivtexio.myvtex.com/_v/private/typings/linked/v1/avantivtexio.avanti-vtexio-boilerplate-backend@0.0.0+build1685538607/public/@types/avantivtexio.avanti-vtexio-boilerplate-backend#c28f6c66e6fdd9987f0f78450f366806c3135bb9"
+  resolved "https://hackatonj--vtexdayhackathon3.myvtex.com/_v/private/typings/linked/v1/avantivtexio.avanti-vtexio-boilerplate-backend@0.0.0+build1685710466/public/@types/avantivtexio.avanti-vtexio-boilerplate-backend#f37985e312fb2dc78688768c94f13e4bf0a5d60c"
 
 classnames@^2.3.2:
   version "2.3.2"
@@ -323,6 +323,11 @@ react-dom@^16.12.0:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.19.1"
+
+react-icons@^4.9.0:
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.9.0.tgz#ba44f436a053393adb1bdcafbc5c158b7b70d2a3"
+  integrity sha512-ijUnFr//ycebOqujtqtV9PFS7JjhWg0QU6ykURVHuL4cbofvRCf3f6GMn9+fBktEFQOIVZnuAYLZdiyadRQRFg==
 
 react-input-mask@^2.0.4:
   version "2.0.4"
