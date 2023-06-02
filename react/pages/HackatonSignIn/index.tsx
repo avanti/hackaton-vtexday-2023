@@ -39,7 +39,7 @@ type Supplier = {
   name?: string
   phone?: string
   sponsor?: string
-  address?: SupplierAddress,
+  address?: SupplierAddress
 }
 
 type SupplierAddress = {
@@ -81,7 +81,7 @@ const FIELDS: Array<{
     placeholder: 'Digite seu Telefone',
     type: 'text',
     mask: '(99) 99999-9999',
-  }
+  },
 ]
 
 const ADDRESS_FIELDS: Array<{
@@ -132,7 +132,6 @@ const ADDRESS_FIELDS: Array<{
     type: 'text',
     mask: '',
   },
-
 ]
 
 export default () => {
@@ -141,13 +140,15 @@ export default () => {
   const [supplier, setSupplier] = useState<Supplier>({})
   const [affiliateCode, setAffiliateCode] = useState<string>()
 
-  const [createAffiliate, { data, loading, error }] = useMutation(CREATE_AFFILIATE)
+  const [createAffiliate, { data, loading, error }] = useMutation(
+    CREATE_AFFILIATE
+  )
 
   useEffect(() => {
-    if(error){
+    if (error) {
       alert('Não foi possível completar o cadastro, tente novamente mais tarde')
     }
-  }, [data,loading, error])
+  }, [data, loading, error])
 
   const getAddressByCep = async (cep: string) => {
     const result: CepResponse =
@@ -164,19 +165,20 @@ export default () => {
       tipoEndereco: tipoLogradouro,
     }
 
-    setSupplier((prevState) => ({...prevState, address: {
-      city: clientData.cidade,
-      state: clientData.estado,
-      neighborhood: clientData.bairro,
-      street: `${clientData.tipoEndereco} ${clientData.logradouro}`
-    }}))
-
+    setSupplier((prevState) => ({
+      ...prevState,
+      address: {
+        city: clientData.cidade,
+        state: clientData.estado,
+        neighborhood: clientData.bairro,
+        street: `${clientData.tipoEndereco} ${clientData.logradouro}`,
+      },
+    }))
   }
-
 
   const handleInput = (
     event: React.ChangeEvent<HTMLInputElement>,
-    field: keyof Supplier,
+    field: keyof Supplier
   ) => {
     const value = event.currentTarget.value
 
@@ -188,22 +190,22 @@ export default () => {
 
   const handleAddressInput = (
     event: React.ChangeEvent<HTMLInputElement>,
-    field: keyof SupplierAddress,
+    field: keyof SupplierAddress
   ) => {
     const value = event.currentTarget.value
 
     setSupplier((prevState) => ({
       ...prevState,
-      address: { 
+      address: {
         ...prevState.address,
-        [field]: value
+        [field]: value,
       },
     }))
 
-    if(field === 'postalCode'){
+    if (field === 'postalCode') {
       const newValue = value.replace(/\D/g, '')
 
-      if(newValue && newValue.length === 8){
+      if (newValue && newValue.length === 8) {
         getAddressByCep(newValue.replace(/\D/g, ''))
       }
     }
@@ -215,7 +217,8 @@ export default () => {
     const normalizedValues: Supplier = Object.entries(supplier)
       .map(([key, value]) => {
         if (['cep', 'cpf', 'phone'].includes(key)) {
-          const normalizedValue = typeof value === 'string' ? value?.replace(/\D/g, '') : value
+          const normalizedValue =
+            typeof value === 'string' ? value?.replace(/\D/g, '') : value
           return { key, value: normalizedValue } as {
             key: keyof Supplier
             value: string
@@ -230,32 +233,30 @@ export default () => {
         })
       }, {})
 
-    const response = await createAffiliate(
-      {
-        variables:{
-          input: {
-            affiliateId: String(Date.now()),
-            name: normalizedValues.name,
-            cpf: normalizedValues.cpf,
-            email: normalizedValues.email,
-            gender: "MALE",
-            sponsor: {email: normalizedValues.sponsor},
-            address: {
-              postalCode: normalizedValues.address?.postalCode || '',
-              street: normalizedValues.address?.street || '',
-              number: normalizedValues.address?.number || '',
-              neighborhood: normalizedValues.address?.neighborhood || '',
-              complement: normalizedValues.address?.complement || '',
-              city: normalizedValues.address?.city || '',
-              state: normalizedValues.address?.state || ''
-            },
-            phone: normalizedValues.phone
-          }
-        }
-      }
-    )
+    const response = await createAffiliate({
+      variables: {
+        input: {
+          affiliateId: String(Date.now()),
+          name: normalizedValues.name,
+          cpf: normalizedValues.cpf,
+          email: normalizedValues.email,
+          gender: 'MALE',
+          sponsor: { email: normalizedValues.sponsor },
+          address: {
+            postalCode: normalizedValues.address?.postalCode || '',
+            street: normalizedValues.address?.street || '',
+            number: normalizedValues.address?.number || '',
+            neighborhood: normalizedValues.address?.neighborhood || '',
+            complement: normalizedValues.address?.complement || '',
+            city: normalizedValues.address?.city || '',
+            state: normalizedValues.address?.state || '',
+          },
+          phone: normalizedValues.phone,
+        },
+      },
+    })
 
-    if(response?.data?.createAffiliate?.affiliateCode){
+    if (response?.data?.createAffiliate?.affiliateCode) {
       setAffiliateCode(response.data.createAffiliate.affiliateCode)
     }
   }
@@ -281,7 +282,11 @@ export default () => {
               mask={field.mask}
               type={field.type}
               placeholder={field.placeholder}
-              value={!!supplier && field.name !=='address' ? supplier[field.name] : ''}
+              value={
+                !!supplier && field.name !== 'address'
+                  ? supplier[field.name]
+                  : ''
+              }
               onChange={(e) => handleInput(e, field.name)}
             />
           ))}
@@ -296,18 +301,20 @@ export default () => {
             />
           ))}
 
-            <section className={styles.sponsorContainer}>
-            <h5 className={styles.sponsorInputCall}>Recebeu código de um patrocinador? informe abaixo e finalize seu cadastro</h5>
+          <section className={styles.sponsorContainer}>
+            <h5 className={styles.sponsorInputCall}>
+              Recebeu código de um patrocinador? informe abaixo e finalize seu
+              cadastro
+            </h5>
             <Input
-                mask={''}
-                type='email'
-                className={styles.sponsorInput}
-                placeholder={'E-mail do patrocinador'}
-                value={!!supplier ? supplier['sponsor'] : ''}
-                onChange={(e) => handleInput(e, 'sponsor')}
-              />
-            </section>
-
+              mask={''}
+              type="email"
+              className={styles.sponsorInput}
+              placeholder={'E-mail do patrocinador'}
+              value={!!supplier ? supplier['sponsor'] : ''}
+              onChange={(e) => handleInput(e, 'sponsor')}
+            />
+          </section>
 
           <button type="submit" className={cn(styles.button)}>
             Cadastrar
@@ -315,22 +322,28 @@ export default () => {
         </form>
       </main>
 
-      {!!affiliateCode ? <Modal setOpenModal={setAffiliateCode} >
-        <section className={cn(styles.successModal)}>
-          <header>
-            <MdCheckCircleOutline size={64} className={cn(styles.successModalSVG)}/>
-            <h2>Cadastrado com sucesso</h2>
-          </header>
-          <main>
-            <h3>Aguardando a aprovação do lojista</h3>
-            <h3>Seu código de Afiliado é <span>{affiliateCode}</span></h3>
-          </main>
-          <footer>
-            <Link to='/'>Voltar para a Home</Link>
-          </footer>
-        </section>
-      </Modal> : null}
-
+      {!!affiliateCode ? (
+        <Modal setOpenModal={setAffiliateCode}>
+          <section className={cn(styles.successModal)}>
+            <header>
+              <MdCheckCircleOutline
+                size={64}
+                className={cn(styles.successModalSVG)}
+              />
+              <h2>Cadastrado com sucesso</h2>
+            </header>
+            <main>
+              <h3>Aguardando a aprovação do lojista</h3>
+              <h3>
+                Seu código de Afiliado é <span>{affiliateCode}</span>
+              </h3>
+            </main>
+            <footer>
+              <Link to="/">Voltar para a Home</Link>
+            </footer>
+          </section>
+        </Modal>
+      ) : null}
     </section>
   )
 }

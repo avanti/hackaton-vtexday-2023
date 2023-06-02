@@ -11,7 +11,9 @@ export interface InputProps
 const Input: React.FC<Props> = (props) => {
   const { className, ...rest } = props
 
-  return <InputMask className={`${styles.inputStyle} ${className} `} {...rest} />
+  return (
+    <InputMask className={`${styles.inputStyle} ${className} `} {...rest} />
+  )
 
   //return <input className={`${className} ${styles.inputStyle}`} {...rest} />
 }
