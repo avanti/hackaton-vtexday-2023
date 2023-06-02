@@ -50,6 +50,16 @@ const addAffiliateSupplierCodeField = (ownersNames) => {
 
     addButton.addEventListener('click', () => {
       updateDisplay()
+      const codeField = document.querySelector(
+        '#affiliateCodeFieldWrapper input'
+      )
+      if (codeField && codeField.value) {
+        return vtexjs.checkout.setCustomData({
+          app: 'affiliates-program',
+          field: 'affiliateCode',
+          value: codeField.value,
+        })
+      }
       removeButton.style.display = 'block'
     })
 
@@ -58,24 +68,19 @@ const addAffiliateSupplierCodeField = (ownersNames) => {
       affiliateCodeFieldWrapper.removeChild(addButton)
       affiliateCodeFieldWrapper.removeChild(codeText)
       affiliateCodeFieldWrapper.removeChild(removeButton)
+      // we need this fetch because vtexjs does not have a method to remove customData
+      fetch(
+        `/api/checkout/pub/orderForm/228fae38fbcd430ca6954c15e4076931/customData/affiliates-program/affiliateCode`,
+        {
+          headers: {},
+          method: 'DELETE',
+        }
+      )
       addCodeButton.style.display = 'block'
     })
   }
 
   addCodeButton.addEventListener('click', addInputField)
-
-  const cartToOrderFormButton = document.getElementById('cart-to-orderform')
-
-  cartToOrderFormButton.addEventListener('click', () => {
-    const codeField = document.querySelector('#affiliateCodeFieldWrapper input')
-    if (codeField && codeField.value) {
-      return vtexjs.checkout.setCustomData({
-        app: 'affiliates-program',
-        field: 'affiliateCode',
-        value: codeField.value,
-      })
-    }
-  })
 }
 
 let intervalId = setInterval(function () {
