@@ -10,7 +10,10 @@
       "type": "string"
     },
     "sponsor": {
-      "type": "object",
+      "type": [
+        "object",
+        "null"
+      ],
       "properties": {
         "affiliateId": {
           "type": "string"

@@ -45,7 +45,10 @@
             }
         },
         "sponsor": {
-            "type": "object",
+            "type": [
+                "object",
+                "null"
+            ],
             "properties": {
                 "id": {
                     "type": "string"
