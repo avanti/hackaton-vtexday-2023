@@ -1,0 +1,11 @@
+mutation setupApp {
+  setupApp
+    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
+    affiliateSuppliers {
+      status
+    }
+    affiliateOrders {
+      status
+    }
+  }
+}

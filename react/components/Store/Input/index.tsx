@@ -1,4 +1,5 @@
 import React from 'react'
+import InputMask, { Props } from 'react-input-mask'
 import styles from './input.css'
 
 export interface InputProps
@@ -7,10 +8,14 @@ export interface InputProps
     HTMLInputElement
   > {}
 
-const Input: React.FC<InputProps> = (props) => {
+const Input: React.FC<Props> = (props) => {
   const { className, ...rest } = props
 
-  return <input className={`${className} ${styles.inputStyle}`} {...rest} />
+  return (
+    <InputMask className={`${styles.inputStyle} ${className} `} {...rest} />
+  )
+
+  //return <input className={`${className} ${styles.inputStyle}`} {...rest} />
 }
 
 export default Input

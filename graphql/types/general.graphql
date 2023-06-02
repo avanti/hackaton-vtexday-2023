@@ -1,0 +1,19 @@
+type PaginationResponse {
+  page: Int
+  pageSize: Int
+  total: Int
+}
+
+type SetupResponse {
+  affiliateSuppliers: SetupSchemaStatus
+  affiliateOrders: SetupSchemaStatus
+}
+
+type SetupSchemaStatus {
+  status: String
+}
+
+input PaginationInput {
+  page: Int
+  pageSize: Int
+}

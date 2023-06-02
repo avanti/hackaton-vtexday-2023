@@ -1,0 +1,26 @@
+query getAffiliateById($affiliateId: String) {
+  getAffiliateById(affiliateId: $affiliateId)
+    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
+    affiliateId
+    affiliateCode
+    sponsor {
+      affiliateId
+      email
+    }
+    name
+    cpf
+    email
+    gender
+    address {
+      postalCode
+      street
+      number
+      neighborhood
+      complement
+      city
+      state
+    }
+    phone
+    status
+  }
+}

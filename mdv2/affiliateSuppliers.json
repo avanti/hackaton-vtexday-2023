@@ -1,0 +1,110 @@
+{
+  "properties": {
+    "affiliateId": {
+      "type": "string"
+    },
+    "affiliateCode": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "sponsor": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "affiliateId": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "cpf": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "postalCode": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "neighborhood": {
+          "type": "string"
+        },
+        "complement": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      }
+    },
+    "phone": {
+      "type": "string"
+    }
+  },
+  "required": [],
+  "v-indexed": [
+    "affiliateId",
+    "affiliateCode",
+    "cpf",
+    "email"
+  ],
+  "v-default-fields": [],
+  "v-security": {
+    "allowGetAll": true,
+    "publicRead": [
+      "affiliateId",
+      "affiliateCode",
+      "name",
+      "sponsor",
+      "cpf",
+      "email",
+      "gender",
+      "address",
+      "phone"
+    ],
+    "publicWrite": [
+      "affiliateId",
+      "affiliateCode",
+      "name",
+      "sponsor",
+      "cpf",
+      "email",
+      "gender",
+      "address",
+      "phone"
+    ],
+    "publicFilter": [
+      "affiliateId",
+      "affiliateCode",
+      "name",
+      "sponsor",
+      "cpf",
+      "email",
+      "gender",
+      "address",
+      "phone"
+    ]
+  },
+  "v-cache": false
+}

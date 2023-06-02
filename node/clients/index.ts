@@ -1,10 +1,15 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { IOClients } from '@vtex/api'
+import { OMS } from '@vtex/clients'
 
-import { Example } from './example'
+import { Acquirer } from './acquirer'
 
-// Extend the default IOClients implementation with our own custom clients.
 export class Clients extends IOClients {
-  public get example() {
-    return this.getOrSet('example', Example)
+  public get acquirer() {
+    return this.getOrSet('acquirer', Acquirer)
+  }
+
+  public get oms() {
+    return this.getOrSet('oms', OMS)
   }
 }
