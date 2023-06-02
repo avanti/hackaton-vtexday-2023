@@ -16,7 +16,7 @@ export const createAffiliateLogic = async (
 
     /* await acquirer.createAffiliate(input) */
 
-    const response = await masterdata.createDocument({
+    await masterdata.createDocument({
       dataEntity: 'affiliateSuppliers',
       schema: 'affiliateSuppliers',
       fields: {
