@@ -1,4 +1,4 @@
-import { NotFoundError, ResolverError } from '@vtex/api'
+import { NotFoundError, ResolverError, UserInputError } from '@vtex/api'
 
 import type { Affiliate } from '../typings'
 import { generateAffiliateCode } from '../helpers/generateAffiliateCode'
@@ -11,6 +11,29 @@ export const createAffiliateLogic = async (
   const {
     clients: { masterdata /* , acquirer  */ },
   } = ctx
+  let affiliateSearch: Affiliate[]
+
+  try {
+    affiliateSearch = await masterdata.searchDocuments<Affiliate>({
+      dataEntity: 'affiliateSuppliers',
+      schema: 'affiliateSuppliers',
+      pagination: {
+        page: 1,
+        pageSize: 1,
+      },
+      fields: ['id'],
+      where: `affiliateId=${input.affiliateId}`,
+    })
+  } catch {
+    throw new ResolverError('Failed to check affiliates database')
+  }
+
+  if (affiliateSearch.length) {
+    throw new UserInputError(
+      `Affiliate with ID ${input.affiliateId} already exists`
+    )
+  }
+
   if (input.sponsor) {
     const { affiliateId } = input.sponsor
     let sponsorFullData: Affiliate
