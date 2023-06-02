@@ -21,6 +21,7 @@ export interface Affiliate {
     state: string
   }
   phone: string
+  status: 'PENDING' | 'APPROVED' | 'DENIED'
 }
 
 export interface AffiliateOrder {

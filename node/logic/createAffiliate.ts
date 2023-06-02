@@ -1,7 +1,8 @@
-import { ResolverError } from '@vtex/api'
+import { NotFoundError, ResolverError } from '@vtex/api'
 
 import type { Affiliate } from '../typings'
 import { generateAffiliateCode } from '../helpers/generateAffiliateCode'
+import { getAffiliateByIdLogic } from '../logic/getAffiliateById'
 
 export const createAffiliateLogic = async (
   input: Affiliate,
@@ -10,19 +11,38 @@ export const createAffiliateLogic = async (
   const {
     clients: { masterdata /* , acquirer  */ },
   } = ctx
+  if (input.sponsor) {
+    const { affiliateId } = input.sponsor
+    let sponsorFullData: Affiliate
+
+    try {
+      sponsorFullData = await getAffiliateByIdLogic(affiliateId, ctx)
+    } catch {
+      throw new NotFoundError(`Sponsor ${affiliateId} not found`)
+    }
+
+    if (sponsorFullData.status !== 'APPROVED') {
+      throw new NotFoundError(`Sponsor ${affiliateId} not approved`)
+    }
+  }
+
+  /* here we will create the affiliate at the acquirer
+       we are doing it before saving in MD in case we need any infomartion returned by them
+
+      await acquirer.createAffiliate(input) 
+    */
+
+  // we can use a lib here to improve randomness
+  const generatedAffiliateCode = generateAffiliateCode()
+
   try {
-    // we can use a lib here to improve randomness
-    const generatedAffiliateCode = generateAffiliateCode()
-
-    /* await acquirer.createAffiliate(input) */
-
     await masterdata.createDocument({
       dataEntity: 'affiliateSuppliers',
       schema: 'affiliateSuppliers',
       fields: {
-        affiliateCode: generatedAffiliateCode,
-        status: 'APPROVED',
         ...input,
+        affiliateCode: generatedAffiliateCode,
+        status: 'PENDING',
       },
     })
 
