@@ -1,6 +1,7 @@
 import { Pagination } from './search'
 
 export interface Affiliate {
+  id?: string
   affiliateId: string
   affiliateCode?: string
   sponsor: {
@@ -21,6 +22,7 @@ export interface Affiliate {
     state: string
   }
   phone: string
+  status: 'PENDING' | 'APPROVED' | 'DENIED'
 }
 
 export interface AffiliateOrder {
@@ -37,4 +39,20 @@ export interface GetAffiliateOrdersInput {
   ordersFrom: 'AFFILIATE' | 'SUBAFFILIATES' | 'ALL'
   pagination: Pagination
   dateFrom: string
+}
+
+export interface ApproveOrDenyAffiliateInput {
+  affiliateId: string
+  approve: boolean
+}
+
+export interface GetSubAffiliatesDataInput {
+  affiliateId: string
+  pagination: Pagination
+}
+
+export interface SubAffiliatesInfo {
+  name: string
+  sold: number
+  status: 'PENDING' | 'APPROVED' | 'DENIED'
 }

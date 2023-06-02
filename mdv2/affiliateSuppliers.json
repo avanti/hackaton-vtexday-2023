@@ -66,6 +66,7 @@
   "v-indexed": [
     "affiliateId",
     "affiliateCode",
+    "sponsor",
     "cpf",
     "email"
   ],
