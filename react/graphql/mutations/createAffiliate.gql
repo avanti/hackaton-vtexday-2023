@@ -1,33 +1,26 @@
 mutation createAffiliate($input: CreateAffiliateInput) {
   createAffiliate(input: $input)
     @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
-    data {
+    affiliateId
+    affiliateCode
+    sponsor {
       affiliateId
-      affiliateCode
-      sponsor {
-        affiliateId
-        email
-      }
-      name
-      cpf
       email
-      gender
-      address {
-        postalCode
-        street
-        number
-        neighborhood
-        complement
-        city
-        state
-      }
-      phone
-      status
     }
-    pagination {
-      page
-      pageSize
-      total
+    name
+    cpf
+    email
+    gender
+    address {
+      postalCode
+      street
+      number
+      neighborhood
+      complement
+      city
+      state
     }
+    phone
+    status
   }
 }
