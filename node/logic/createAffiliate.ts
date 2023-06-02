@@ -22,7 +22,7 @@ export const createAffiliateLogic = async (
         pageSize: 1,
       },
       fields: ['id'],
-      where: `affiliateId=${input.affiliateId}`,
+      where: `affiliateId=${input.affiliateId} OR email=${input.email}`,
     })
   } catch {
     throw new ResolverError('Failed to check affiliates database')
@@ -30,7 +30,7 @@ export const createAffiliateLogic = async (
 
   if (affiliateSearch.length) {
     throw new UserInputError(
-      `Affiliate with ID ${input.affiliateId} already exists`
+      `Affiliate with ID ${input.affiliateId} or email ${input.email} already exists`
     )
   }
 
