@@ -8,4 +8,5 @@ type Query {
 type Mutation {
   setupApp: SetupResponse
   createAffiliate(input: CreateAffiliateInput): Affiliate
+  approveOrDenyAffiliate(input: ApproveOrDenyAffiliateInput): Affiliate
 }

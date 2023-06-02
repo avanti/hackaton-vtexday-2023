@@ -40,3 +40,8 @@ export interface GetAffiliateOrdersInput {
   pagination: Pagination
   dateFrom: string
 }
+
+export interface ApproveOrDenyAffiliateInput {
+  affiliateId: string
+  approve: boolean
+}

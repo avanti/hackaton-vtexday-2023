@@ -1,4 +1,9 @@
-import { Affiliate, AffiliateOrder, GetAffiliateOrdersInput } from './affiliate'
+import {
+  Affiliate,
+  AffiliateOrder,
+  GetAffiliateOrdersInput,
+  ApproveOrDenyAffiliateInput,
+} from './affiliate'
 import {
   Item,
   MiniCart,
@@ -18,6 +23,7 @@ export {
   Affiliate,
   AffiliateOrder,
   GetAffiliateOrdersInput,
+  ApproveOrDenyAffiliateInput,
   Item,
   MiniCart,
   RecipientsBuilderPayload,

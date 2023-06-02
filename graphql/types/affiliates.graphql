@@ -78,3 +78,8 @@ enum AffiliateGender {
   FEMALE
   UNDECLARED
 }
+
+input ApproveOrDenyAffiliateInput {
+  affiliateId: String
+  approve: Boolean
+}
