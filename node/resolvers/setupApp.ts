@@ -1,12 +1,11 @@
 import { setupAppLogic } from '../logic/setupApp'
+import type { SetupAppResponse } from '../typings'
 
 export async function setupApp(
   _: unknown,
   __: unknown,
   ctx: Context
-): Promise<{
-  success: boolean
-}> {
+): Promise<SetupAppResponse> {
   try {
     const response = await setupAppLogic(ctx)
 

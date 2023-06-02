@@ -12,6 +12,7 @@ import {
   SearchInput,
 } from './search'
 import { Supplier } from './supplier'
+import { SetupAppResponse } from './setup'
 
 export {
   Affiliate,
@@ -26,4 +27,5 @@ export {
   SearchResult,
   SearchInput,
   Supplier,
+  SetupAppResponse,
 }

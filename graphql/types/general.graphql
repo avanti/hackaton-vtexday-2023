@@ -5,7 +5,12 @@ type PaginationResponse {
 }
 
 type SetupResponse {
-  success: Boolean
+  affiliateSuppliers: SetupSchemaStatus
+  affiliateOrders: SetupSchemaStatus
+}
+
+type SetupSchemaStatus {
+  status: String
 }
 
 input PaginationInput {
