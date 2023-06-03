@@ -3,12 +3,16 @@ import { method, Service } from '@vtex/api'
 
 import { Clients } from './clients'
 import { createAffiliate } from './resolvers/createAffiliate'
+import { approveOrDenyAffiliate } from './resolvers/approveOrDenyAffiliate'
 import { getAffiliateById } from './resolvers/getAffiliateById'
 import { getAffiliates } from './resolvers/getAffiliates'
 import { setupApp } from './resolvers/setupApp'
 import { getAffiliateByCode } from './resolvers/getAffiliateByCode'
 import { getAffiliateOrders } from './resolvers/getAffiliateOrders'
+import { getSubAffiliatesData } from './resolvers/getSubAffiliatesData'
 import { provideSuppliersUsingMiniCart } from './middlewares/suppliers'
+import { orderReceiver } from './middlewares/orderReceiver'
+import { getAffiliateByMail } from './resolvers/getAffiliateByMail'
 
 const MEDIUM_TIMEOUT_MS = 2 * 1000
 
@@ -25,6 +29,9 @@ export default new Service<Clients, RecorderState, ParamsContext>({
       },
     },
   },
+  events: {
+    orderReceiver,
+  },
   /* routes: {
     getSuppliersByMiniCart: method({
       POST: [provideSuppliersUsingMiniCart],
@@ -35,11 +42,14 @@ export default new Service<Clients, RecorderState, ParamsContext>({
       Query: {
         getAffiliates,
         getAffiliateById,
+        getAffiliateByMail,
         getAffiliateByCode,
         getAffiliateOrders,
+        getSubAffiliatesData,
       },
       Mutation: {
         createAffiliate,
+        approveOrDenyAffiliate,
         setupApp,
       },
     },

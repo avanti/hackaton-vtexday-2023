@@ -74,17 +74,20 @@ A instalação deste app deve ser algo fluido e rápido de se fazer:
 
 O backend possui, além da lógica responsável pelo Supplier Protocol, uma camada GraphQL para gerenciamento de afiliados.
 
-| Queries              |                                                                                                                                                                                                                         |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `getAffiliates`      | Retorna todos os afiliados cadastrado. Recebe paginação e campo aberto de busca no formato do Master Data.                                                                                                              |
-| `getAffiliateById`   | Retorna um afiliado baseado em seu ID.                                                                                                                                                                                  |
-| `getAffiliateByCode` | Retorna um afiliado baseado em seu código.                                                                                                                                                                              |
-| `getAffiliateOrders` | Retorna os pedidos onde foram utilizados códigos de afiliado. Recebe o ID do afiliado, paginação, filtro de data e indicação se deve retornar somente os pedidos do afiliado, somente os de seus subafiliados ou ambos. |
+| Queries                |                                                                                                                                                                                                                         |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `getAffiliates`        | Retorna todos os afiliados cadastrado. Recebe paginação e campo aberto de busca no formato do Master Data.                                                                                                              |
+| `getAffiliateById`     | Retorna um afiliado baseado em seu ID.                                                                                                                                                                                  |
+| `getAffiliateByMail`   | Retorna um afiliado baseado em seu email.                                                                                                                                                                               |
+| `getAffiliateByCode`   | Retorna um afiliado baseado em seu código.                                                                                                                                                                              |
+| `getAffiliateOrders`   | Retorna os pedidos onde foram utilizados códigos de afiliado. Recebe o ID do afiliado, paginação, filtro de data e indicação se deve retornar somente os pedidos do afiliado, somente os de seus subafiliados ou ambos. |
+| `getSubAffiliatesData` | Retorna os dados básicos dos subafiliados, como nome, número de vendas (contando somente pedidos que não estejam com o status `payment-pending` ou `canceled`) e status.                                                |
 
-| Mutations         |                                                                                                                                                                              |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `createAffiliate` | Cria um novo afiliado na loja.                                                                                                                                               |
-| `setupApp`        | Faz o setup dos schemas necessários para o funcionamento do app. Só precisa ser executada em lojas que ainda não tiveram setup ou que estão com versões antigas dos schemas. |
+| Mutations                |                                                                                                                                                                              |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `createAffiliate`        | Cria um novo afiliado na loja.                                                                                                                                               |
+| `approveOrDenyAffiliate` | Altera o status de um afiliado com base no booleano `approve` enviado                                                                                                        |
+| `setupApp`               | Faz o setup dos schemas necessários para o funcionamento do app. Só precisa ser executada em lojas que ainda não tiveram setup ou que estão com versões antigas dos schemas. |
 
 ---
 

@@ -22,15 +22,15 @@
     {
       "name": "outbound-access",
       "attrs": {
-        "host": "httpstat.us",
-        "path": "*"
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/*"
       }
     },
     {
       "name": "outbound-access",
       "attrs": {
-        "host": "masterws.stg.hanzo.com.br",
-        "path": "*"
+        "host": "api.vtex.com",
+        "path": "/dataentities/*"
       }
     },
     {
@@ -41,13 +41,6 @@
     },
     {
       "name": "ADMIN_DS"
-    },
-    {
-      "name": "outbound-access",
-      "attrs": {
-        "host": "api.vtex.com",
-        "path": "/dataentities/*"
-      }
     }
   ],
   "billingOptions": {
