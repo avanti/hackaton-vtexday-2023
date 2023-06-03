@@ -12,6 +12,7 @@ import { getAffiliateOrders } from './resolvers/getAffiliateOrders'
 import { getSubAffiliatesData } from './resolvers/getSubAffiliatesData'
 import { provideSuppliersUsingMiniCart } from './middlewares/suppliers'
 import { orderReceiver } from './middlewares/orderReceiver'
+import { getAffiliateByMail } from './resolvers/getAffiliateByMail'
 
 const MEDIUM_TIMEOUT_MS = 2 * 1000
 
@@ -41,6 +42,7 @@ export default new Service<Clients, RecorderState, ParamsContext>({
       Query: {
         getAffiliates,
         getAffiliateById,
+        getAffiliateByMail,
         getAffiliateByCode,
         getAffiliateOrders,
         getSubAffiliatesData,
