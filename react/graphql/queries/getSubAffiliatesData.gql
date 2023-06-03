@@ -1,0 +1,8 @@
+query getSubAffiliatesData($input: GetSubAffiliatesDataInput) {
+  getSubAffiliatesData(input: $input)
+    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
+    name
+    sold
+    status
+  }
+}

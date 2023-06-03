@@ -20,7 +20,7 @@
     "@types/react": "^16.9.31",
     "@vtex/tsconfig": "^0.6.0",
     "apollo-cache-inmemory": "^1.6.5",
-    "avantivtexio.avanti-vtexio-boilerplate-backend": "https://hackatonj--vtexdayhackathon3.myvtex.com/_v/private/typings/linked/v1/avantivtexio.avanti-vtexio-boilerplate-backend@0.0.0+build1685710466/public/@types/avantivtexio.avanti-vtexio-boilerplate-backend",
+    "avantivtexio.avanti-vtexio-boilerplate-backend": "https://jrs--vtexdayhackathon3.myvtex.com/_v/private/typings/linked/v1/avantivtexio.avanti-vtexio-boilerplate-backend@0.0.0+build1685747803/public/@types/avantivtexio.avanti-vtexio-boilerplate-backend",
     "graphql": "^14.6.0",
     "typescript": "3.9.7",
     "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles",

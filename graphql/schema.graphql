@@ -2,10 +2,13 @@ type Query {
   getAffiliates(input: GetAffiliatesInput): GetAffiliatesResponse
   getAffiliateById(affiliateId: String): Affiliate
   getAffiliateByCode(affiliateCode: String): Affiliate
+  getAffiliateByMail(affiliateMail: String): Affiliate
   getAffiliateOrders(input: GetAffiliateOrdersInput): GetAffiliateOrdersResponse
+  getSubAffiliatesData(input: GetSubAffiliatesDataInput): [SubAffiliatesInfo]
 }
 
 type Mutation {
   setupApp: SetupResponse
   createAffiliate(input: CreateAffiliateInput): Affiliate
+  approveOrDenyAffiliate(input: ApproveOrDenyAffiliateInput): Affiliate
 }
