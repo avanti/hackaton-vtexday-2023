@@ -11,7 +11,7 @@ export const getAffiliateByMailLogic = async (
   } = ctx
 
   let affiliateSearch: Affiliate[]
-  console.log("MASTERDATA: ",masterdata)
+  
   try {
     affiliateSearch = await masterdata.searchDocuments<Affiliate>({
       dataEntity: 'affiliateSuppliers',
