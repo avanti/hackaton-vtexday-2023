@@ -10,10 +10,7 @@
     "@types/ramda": "types/npm-ramda#dist",
     "@vtex/api": "6.45.15",
     "@vtex/tsconfig": "^0.5.6",
-    "typescript": "3.9.7",
-    "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles",
-    "vtex.session-client": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.session-client@1.0.2/public/@types/vtex.session-client",
-    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.4/public/@types/vtex.styleguide"
+    "typescript": "3.9.7"
   },
   "scripts": {
     "lint": "tsc --noEmit --pretty"

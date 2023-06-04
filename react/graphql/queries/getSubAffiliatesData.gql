@@ -1,14 +1,6 @@
 query getSubAffiliatesData($input: GetSubAffiliatesDataInput) {
   getSubAffiliatesData(input: $input)
-    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
-    name
-    sold
-    status
-  }
-}
-query getSubAffiliatesData($input: GetSubAffiliatesDataInput) {
-  getSubAffiliatesData(input: $input)
-    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
+    @context(provider: "vtexdayhackathon3.affiliates-program") {
     name
     sold
     status

@@ -1,7 +1,7 @@
 import { getAffiliateByMailLogic } from '../logic/getAffiliateByMail'
 import type { Affiliate } from '../typings'
 
-export const getAffiliateByMail= async (
+export const getAffiliateByMail = async (
   _: unknown,
   { affiliateMail }: { affiliateMail: string },
   ctx: Context

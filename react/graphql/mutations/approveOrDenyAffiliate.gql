@@ -1,32 +1,6 @@
 mutation approveOrDenyAffiliate($input: ApproveOrDenyAffiliateInput) {
   approveOrDenyAffiliate(input: $input)
-    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
-    affiliateId
-    affiliateCode
-    sponsor {
-      affiliateId
-      email
-    }
-    name
-    cpf
-    email
-    gender
-    address {
-      postalCode
-      street
-      number
-      neighborhood
-      complement
-      city
-      state
-    }
-    phone
-    status
-  }
-}
-mutation approveOrDenyAffiliate($input: ApproveOrDenyAffiliateInput) {
-  approveOrDenyAffiliate(input: $input)
-    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
+    @context(provider: "vtexdayhackathon3.affiliates-program") {
     affiliateId
     affiliateCode
     sponsor {

@@ -1,13 +1,14 @@
 {
-  "name": "avanti-vtexio-boilerplate-backend",
-  "vendor": "avantivtexio",
+  "name": "affiliates-program",
+  "vendor": "vtexdayhackathon3",
   "version": "0.0.0",
-  "title": "avanti-vtexio-boilerplate-backend",
-  "description": "avanti-vtexio-boilerplate-backend",
+  "title": "affiliates-program",
+  "description": "affiliates-program",
   "dependencies": {
     "vtex.styleguide": "9.x",
     "vtex.css-handles": "0.x",
     "vtex.session-client": "1.x"
+    "vtex.recipients-builder": "1.x"
   },
   "builders": {
     "messages": "1.x",
@@ -15,7 +16,8 @@
     "store": "0.x",
     "node": "6.x",
     "admin": "0.x",
-    "graphql": "1.x"
+    "graphql": "1.x",
+    "checkout-ui-custom": "0.x"
   },
   "credentialType": "absolute",
   "policies": [
