@@ -6,7 +6,8 @@
   "description": "affiliates-program",
   "dependencies": {
     "vtex.styleguide": "9.x",
-    "vtex.css-handles": "0.x"
+    "vtex.css-handles": "0.x",
+    "vtex.recipients-builder": "1.x"
   },
   "builders": {
     "messages": "1.x",
@@ -14,7 +15,8 @@
     "store": "0.x",
     "node": "6.x",
     "admin": "0.x",
-    "graphql": "1.x"
+    "graphql": "1.x",
+    "checkout-ui-custom": "0.x"
   },
   "credentialType": "absolute",
   "policies": [
