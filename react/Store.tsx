@@ -1,2 +1,2 @@
-import Store from './components/Store'
+import Store from './pages/HackatonSignIn'
 export default Store

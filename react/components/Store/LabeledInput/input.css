@@ -1,0 +1,23 @@
+.inputStyle {
+    padding: 4px 8px;
+    border: 2px solid #ddd4;
+
+    outline: none;
+    text-align: center;
+    min-width: 100%;
+}
+
+.inputStyle::placeholder {
+    color: #888;
+}
+
+.inputStyle:focus {
+    border: 2px solid #bbb;
+}
+
+.labelStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}

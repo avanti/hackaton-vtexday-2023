@@ -1,6 +1,6 @@
-mutation approveOrDenyAffiliate($input: ApproveOrDenyAffiliateInput) {
-  approveOrDenyAffiliate(input: $input)
-    @context(provider: "vtexdayhackathon3.affiliates-program") {
+query getAffiliateByMail($affiliateMail: String) {
+  getAffiliateByMail(affiliateMail: $affiliateMail)
+    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
     affiliateId
     affiliateCode
     sponsor {

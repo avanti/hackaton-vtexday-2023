@@ -1,0 +1,59 @@
+.vanillaButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.84rem;
+    font-weight: 600;
+    background-color: #fafafa;
+
+    cursor: pointer;
+
+    gap: 8px;
+
+    color: #505050;
+    border: 2px #3332 solid;
+}
+
+.vanillaButton svg {
+    fill: #505050;
+}
+
+.borderRadius--none {
+    border-radius: none;
+}
+
+.borderRadius--small {
+    border-radius: .3rem;
+}
+
+.borderRadius--medium {
+    border-radius: 1rem;
+}
+
+.borderRadius--large {
+    border-radius: 3rem;
+}
+
+.buttonPadding--none {
+    padding: 0;
+}
+
+.buttonPadding--small {
+    padding: .3rem .5rem;
+}
+
+.buttonPadding--medium {
+    padding: 0.8rem 1rem;
+}
+
+.buttonPadding--large {
+    padding: 1.6rem 2rem;
+}
+
+.childrenOrder--asc {
+    flex-direction: row;
+}
+
+.childrenOrder--desc {
+    flex-direction: row-reverse;
+}
