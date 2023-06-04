@@ -1,6 +1,6 @@
 query getAffiliates($input: GetAffiliatesInput) {
   getAffiliates(input: $input)
-    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
+    @context(provider: "vtexdayhackathon3.affiliates-program") {
     data {
       affiliateId
       affiliateCode

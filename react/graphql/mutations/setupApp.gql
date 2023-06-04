@@ -1,6 +1,6 @@
 mutation setupApp {
   setupApp
-    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
+    @context(provider: "vtexdayhackathon3.affiliates-program") {
     affiliateSuppliers {
       status
     }

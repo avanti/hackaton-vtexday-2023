@@ -1,6 +1,6 @@
 mutation createAffiliate($input: CreateAffiliateInput) {
   createAffiliate(input: $input)
-    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
+    @context(provider: "vtexdayhackathon3.affiliates-program") {
     affiliateId
     affiliateCode
     sponsor {

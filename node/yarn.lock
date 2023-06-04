@@ -310,10 +310,6 @@ async@^2.6.3:
   dependencies:
     lodash "^4.17.14"
 
-"avantivtexio.avanti-vtexio-boilerplate-backend@https://jrs--vtexdayhackathon3.myvtex.com/_v/private/typings/linked/v1/avantivtexio.avanti-vtexio-boilerplate-backend@0.0.0+build1685747803/public/@types/avantivtexio.avanti-vtexio-boilerplate-backend":
-  version "0.0.0"
-  resolved "https://jrs--vtexdayhackathon3.myvtex.com/_v/private/typings/linked/v1/avantivtexio.avanti-vtexio-boilerplate-backend@0.0.0+build1685747803/public/@types/avantivtexio.avanti-vtexio-boilerplate-backend#30ead6d8dbe3d8a9bddee13756e38021dbd1adf5"
-
 axios-retry@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/axios-retry/-/axios-retry-3.1.2.tgz#4f4dcbefb0b434e22b72bd5e28a027d77b8a3458"
@@ -1459,18 +1455,6 @@ vary@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
-
-"vtex.css-handles@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles":
-  version "0.4.4"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles#8c45c6decf9acd2b944e07261686decff93d6422"
-
-"vtex.session-client@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.session-client@1.0.2/public/@types/vtex.session-client":
-  version "1.0.2"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.session-client@1.0.2/public/@types/vtex.session-client#239ac9935a59699e62e1509f844de81544ed0877"
-
-"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.4/public/@types/vtex.styleguide":
-  version "9.146.4"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.4/public/@types/vtex.styleguide#0b5e5ec3e20bbcd4f93701376d007feba294c9d3"
 
 wrappy@1:
   version "1.0.2"
