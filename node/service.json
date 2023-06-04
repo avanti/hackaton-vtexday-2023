@@ -3,5 +3,14 @@
   "ttl": 60,
   "timeout": 2,
   "minReplicas": 2,
-  "maxReplicas": 5
+  "maxReplicas": 5,
+  "events": {
+    "orderReceiver": {
+      "sender": "vtex.orders-broadcast",
+      "topics": [
+        "payment-approved",
+        "invoiced"
+      ]
+    }
+  }
 }

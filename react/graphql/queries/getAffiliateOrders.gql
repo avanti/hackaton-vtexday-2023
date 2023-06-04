@@ -1,5 +1,6 @@
 query GetAffiliateOrdersInput($input: GetAffiliateOrdersInput) {
-  getAffiliateOrders(input: $input) {
+  getAffiliateOrders(input: $input)
+    @context(provider: "avantivtexio.avanti-vtexio-boilerplate-backend") {
     data {
       orderId
       orderDate
