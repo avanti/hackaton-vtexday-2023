@@ -1,7 +1,7 @@
 {
   "name": "affiliates-program",
   "vendor": "vtexdayhackathon3",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "title": "affiliates-program",
   "description": "affiliates-program",
   "dependencies": {
@@ -59,8 +59,6 @@
       "url": "https://penseavanti.com.br/"
     }
   },
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
