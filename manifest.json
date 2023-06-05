@@ -1,7 +1,7 @@
 {
   "name": "affiliates-program",
   "vendor": "vtexdayhackathon3",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "title": "affiliates-program",
   "description": "affiliates-program",
   "dependencies": {
@@ -42,6 +42,37 @@
         "host": "api.pagar.me",
         "path": "/*"
       }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/oms/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/oms/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/api/oms/*"
+      }
+    },
+    {
+      "name": "OMSViewer"
     },
     {
       "name": "colossus-fire-event"
