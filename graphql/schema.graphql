@@ -5,6 +5,7 @@ type Query {
   getAffiliateByMail(affiliateMail: String): Affiliate
   getAffiliateOrders(input: GetAffiliateOrdersInput): GetAffiliateOrdersResponse
   getSubAffiliatesData(input: GetSubAffiliatesDataInput): [SubAffiliatesInfo]
+  getAffiliateSalesData(affiliateEmail: String): GetAffiliateDataResponse
 }
 
 type Mutation {

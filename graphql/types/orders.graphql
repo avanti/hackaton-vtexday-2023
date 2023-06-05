@@ -25,14 +25,14 @@ type GetAffiliateOrdersResponse {
 }
 
 input GetAffiliateOrdersInput {
-  affiliateId: String
+  affiliateEmail: String
   ordersFrom: OrdersFrom
   pagination: PaginationInput
   dateFrom: String
 }
 
 enum OrdersFrom {
-    AFFILIATE
-    SUBAFFILIATES
-    ALL
+  AFFILIATE
+  SUBAFFILIATES
+  ALL
 }

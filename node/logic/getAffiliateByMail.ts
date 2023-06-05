@@ -21,7 +21,7 @@ export const getAffiliateByMailLogic = async (
         pageSize: 1,
       },
       fields: [
-        'affiliateId,affiliateCode,sponsor,name,cpf,email,gender,address,phone,status',
+        'affiliateId,affiliateCode,sponsor,name,cpf,email,gender,address,phone,status,createdIn',
       ],
       where: `email=${affiliateMail}`,
     })

@@ -10,9 +10,10 @@ import { setupApp } from './resolvers/setupApp'
 import { getAffiliateByCode } from './resolvers/getAffiliateByCode'
 import { getAffiliateOrders } from './resolvers/getAffiliateOrders'
 import { getSubAffiliatesData } from './resolvers/getSubAffiliatesData'
-import { provideSuppliersUsingMiniCart } from './middlewares/suppliers'
-import { orderReceiver } from './middlewares/orderReceiver'
 import { getAffiliateByMail } from './resolvers/getAffiliateByMail'
+import { getAffiliateSalesData } from './resolvers/getAffiliateSalesDataLogic'
+import { orderReceiver } from './middlewares/orderReceiver'
+import { provideSuppliersUsingMiniCart } from './middlewares/suppliers'
 
 const MEDIUM_TIMEOUT_MS = 2 * 1000
 
@@ -32,11 +33,11 @@ export default new Service<Clients, RecorderState, ParamsContext>({
   events: {
     orderReceiver,
   },
-  /* routes: {
+  routes: {
     getSuppliersByMiniCart: method({
       POST: [provideSuppliersUsingMiniCart],
     }),
-  }, */
+  },
   graphql: {
     resolvers: {
       Query: {
@@ -46,6 +47,7 @@ export default new Service<Clients, RecorderState, ParamsContext>({
         getAffiliateByCode,
         getAffiliateOrders,
         getSubAffiliatesData,
+        getAffiliateSalesData,
       },
       Mutation: {
         createAffiliate,

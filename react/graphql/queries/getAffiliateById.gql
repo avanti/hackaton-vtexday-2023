@@ -22,5 +22,6 @@ query getAffiliateById($affiliateId: String) {
     }
     phone
     status
+    createdIn
   }
 }

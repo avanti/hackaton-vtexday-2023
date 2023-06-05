@@ -6,6 +6,7 @@ import {
   ApproveOrDenyAffiliateInput,
   SubAffiliatesInfo,
   Sponsor,
+  AffiliateMonthlySalesData,
 } from './affiliate'
 import {
   Item,
@@ -24,6 +25,7 @@ import { SetupAppResponse } from './setup'
 
 export {
   Affiliate,
+  AffiliateMonthlySalesData,
   Sponsor,
   AffiliateOrder,
   GetAffiliateOrdersInput,

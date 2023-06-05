@@ -17,6 +17,7 @@
     "node": "6.x",
     "admin": "0.x",
     "graphql": "1.x",
+    "supplierProvider": "0.x",
     "checkout-ui-custom": "0.x"
   },
   "credentialType": "absolute",
