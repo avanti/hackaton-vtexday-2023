@@ -1,19 +1,43 @@
-import { ResolverError } from '@vtex/api'
+import { NotFoundError, ResolverError } from '@vtex/api'
 
 import type {
   SearchResult,
   AffiliateOrder,
   GetAffiliateOrdersInput,
+  Affiliate,
 } from '../typings'
 
 export const getAffiliateOrdersLogic = async (
   input: GetAffiliateOrdersInput,
   ctx: Context
 ): Promise<SearchResult<AffiliateOrder>> => {
-  const { affiliateId, pagination, ordersFrom, dateFrom } = input
+  const { affiliateEmail, pagination, ordersFrom, dateFrom } = input
   const {
     clients: { masterdata },
   } = ctx
+
+  let affiliateSearch: Affiliate[]
+
+  try {
+    affiliateSearch = await masterdata.searchDocuments<Affiliate>({
+      dataEntity: 'affiliateSuppliers',
+      schema: 'affiliateSuppliers',
+      fields: ['affiliateId'],
+      pagination: {
+        page: 1,
+        pageSize: 1,
+      },
+      where: `email=${affiliateEmail}`,
+    })
+  } catch {
+    throw new ResolverError('Failed to get affiliate orders')
+  }
+
+  if (!affiliateSearch.length) {
+    throw new NotFoundError('Affiliate not found')
+  }
+
+  const { affiliateId } = affiliateSearch[0]
 
   let whereField: string
 

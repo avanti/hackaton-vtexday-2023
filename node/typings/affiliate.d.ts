@@ -39,7 +39,7 @@ export interface AffiliateOrder {
 }
 
 export interface GetAffiliateOrdersInput {
-  affiliateId: string
+  affiliateEmail: string
   ordersFrom: 'AFFILIATE' | 'SUBAFFILIATES' | 'ALL'
   pagination: Pagination
   dateFrom: string
@@ -51,7 +51,7 @@ export interface ApproveOrDenyAffiliateInput {
 }
 
 export interface GetSubAffiliatesDataInput {
-  affiliateId: string
+  affiliateEmail: string
   pagination: Pagination
 }
 
