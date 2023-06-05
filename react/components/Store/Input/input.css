@@ -1,0 +1,21 @@
+.inputStyle {
+    padding: 12px 16px;
+
+    border: 1px solid #303030;
+    border-radius: 8px;
+
+    outline: none;
+    min-width: 100%;
+}
+
+.inputStyle::placeholder {
+    color: #888;
+}
+
+.inputStyle:focus {
+    border: 1px solid #005CFF;
+}
+
+.inputStyle:focus::placeholder {
+    color: #005CFF;
+}
