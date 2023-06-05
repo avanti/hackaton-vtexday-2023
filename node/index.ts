@@ -33,11 +33,11 @@ export default new Service<Clients, RecorderState, ParamsContext>({
   events: {
     orderReceiver,
   },
-  /* routes: {
+  routes: {
     getSuppliersByMiniCart: method({
       POST: [provideSuppliersUsingMiniCart],
     }),
-  }, */
+  },
   graphql: {
     resolvers: {
       Query: {
