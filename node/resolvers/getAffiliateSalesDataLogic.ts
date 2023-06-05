@@ -3,13 +3,13 @@ import type { AffiliateMonthlySalesData } from '../typings'
 
 export const getAffiliateSalesData = async (
   _: unknown,
-  { affiliateId }: { affiliateId: string },
+  { affiliateEmail }: { affiliateEmail: string },
   ctx: Context
 ): Promise<{
   monthlyPerformance: AffiliateMonthlySalesData[]
 }> => {
   try {
-    const response = await getAffiliateSalesDataLogic(affiliateId, ctx)
+    const response = await getAffiliateSalesDataLogic(affiliateEmail, ctx)
 
     return response
   } catch (e) {

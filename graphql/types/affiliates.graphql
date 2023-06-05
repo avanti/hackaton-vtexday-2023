@@ -86,7 +86,7 @@ type SubAffiliatesInfo {
 }
 
 input GetSubAffiliatesDataInput {
-  affiliateId: String
+  affiliateEmail: String
   pagination: PaginationInput
 }
 

@@ -1,5 +1,5 @@
-query getAffiliateSalesData($affiliateId: String) {
-  getAffiliateSalesData(affiliateId: $affiliateId) {
+query getAffiliateSalesData($affiliateEmail: String) {
+  getAffiliateSalesData(affiliateEmail: $affiliateEmail) {
     monthlyPerformance {
       month
       affiliateSales
