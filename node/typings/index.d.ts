@@ -22,6 +22,10 @@ import {
 } from './search'
 import { Supplier } from './supplier'
 import { SetupAppResponse } from './setup'
+import {
+  CreateRecipientAtPagarMe,
+  CreateRecipientAtPagarMeResponse,
+} from './acquirer'
 
 export {
   Affiliate,
@@ -41,4 +45,6 @@ export {
   SearchInput,
   Supplier,
   SetupAppResponse,
+  CreateRecipientAtPagarMe,
+  CreateRecipientAtPagarMeResponse,
 }

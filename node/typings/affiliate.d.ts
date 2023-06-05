@@ -3,7 +3,7 @@ import { Supplier } from './supplier'
 
 export interface Affiliate {
   id?: string
-  affiliateId: string
+  affiliateId?: string
   affiliateCode?: string
   sponsor: Sponsor | string
   name: string

@@ -45,7 +45,7 @@ export async function getSuppliersByMiniCart(
       : Math.floor(payload.operationValue * 0.285) // 28,5% if it has sponsor (95% of 30%)
 
     suppliers.push({
-      id: affiliateId,
+      id: affiliateId as string,
       name,
       amount: affiliateCommision,
       document: cpf,
@@ -60,7 +60,7 @@ export async function getSuppliersByMiniCart(
       const sponsorCommision = Math.floor(payload.operationValue * 0.015) // (5% of 30%)
 
       suppliers.push({
-        id: affiliateSponsor.affiliateId,
+        id: affiliateSponsor.affiliateId as string,
         name: affiliateSponsor.name,
         amount: sponsorCommision,
         document: affiliateSponsor.cpf,
@@ -85,7 +85,6 @@ export async function getSuppliersByMiniCart(
       },
     })
   } catch {
-    // TODO: decide if we want to throw any error or just return empty array
     return []
   }
 

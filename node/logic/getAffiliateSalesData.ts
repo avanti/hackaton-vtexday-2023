@@ -171,7 +171,10 @@ export const getAffiliateSalesDataLogic = async (
         ),
         subAffiliatesSalesComission: ordersPerMonth[month].reduce(
           (acc: number, currentOrder: AffiliateOrder) => {
-            if (currentOrder.sponsor?.id === affiliateId) {
+            if (
+              currentOrder.sponsor &&
+              currentOrder.sponsor.id === affiliateId
+            ) {
               return acc + currentOrder.sponsor.amount
             }
 

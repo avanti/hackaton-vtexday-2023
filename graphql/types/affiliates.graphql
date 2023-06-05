@@ -49,7 +49,6 @@ input GetAffiliatesInput {
 }
 
 input CreateAffiliateInput {
-  affiliateId: String!
   sponsor: String
   name: String!
   cpf: String!

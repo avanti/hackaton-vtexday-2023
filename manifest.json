@@ -36,6 +36,13 @@
       }
     },
     {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "api.pagar.me",
+        "path": "/*"
+      }
+    },
+    {
       "name": "colossus-fire-event"
     },
     {
