@@ -23,6 +23,7 @@ query getAffiliates($input: GetAffiliatesInput) {
       }
       phone
       status
+      createdIn
     }
     pagination {
       page

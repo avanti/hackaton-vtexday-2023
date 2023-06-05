@@ -21,6 +21,7 @@ export interface Affiliate {
   }
   phone: string
   status: 'PENDING' | 'APPROVED' | 'DENIED'
+  createdIn?: string
 }
 
 export interface Sponsor {

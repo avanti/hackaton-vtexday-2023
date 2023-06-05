@@ -22,7 +22,7 @@ export const approveOrDenyAffiliateLogic = async (
         pageSize: 1,
       },
       fields: [
-        'id,affiliateId,affiliateCode,sponsor,name,cpf,email,gender,address,phone,status',
+        'id,affiliateId,affiliateCode,sponsor,name,cpf,email,gender,address,phone,status,createdIn',
       ],
       where: `affiliateId=${affiliateId}`,
     })
