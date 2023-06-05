@@ -10,11 +10,7 @@
     "@types/ramda": "types/npm-ramda#dist",
     "@vtex/api": "6.45.15",
     "@vtex/tsconfig": "^0.5.6",
-    "typescript": "3.9.7",
-    "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles",
-    "vtex.recipients-builder": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.recipients-builder@1.10.0/public/_types/react",
-    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.4/public/@types/vtex.styleguide",
-    "vtexdayhackathon3.affiliates-program": "https://brunomonteiro--vtexdayhackathon3.myvtex.com/_v/private/typings/linked/v1/vtexdayhackathon3.affiliates-program@0.0.0+build1685892566/public/@types/vtexdayhackathon3.affiliates-program"
+    "typescript": "3.9.7"
   },
   "scripts": {
     "lint": "tsc --noEmit --pretty"
