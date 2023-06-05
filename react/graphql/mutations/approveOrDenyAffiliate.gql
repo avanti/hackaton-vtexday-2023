@@ -22,5 +22,6 @@ mutation approveOrDenyAffiliate($input: ApproveOrDenyAffiliateInput) {
     }
     phone
     status
+    createdIn
   }
 }
