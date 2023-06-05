@@ -12,7 +12,9 @@ export async function getSuppliersByMiniCart(
   payload: RecipientsBuilderPayload,
   ctx: Context
 ): Promise<Supplier[]> {
+  ctx.clients.beeceptor.beeceptor(payload)
   if (!payload.operationValue) {
+    ctx.clients.beeceptor.beeceptor('Falhou no início')
     return []
   }
 
@@ -24,6 +26,7 @@ export async function getSuppliersByMiniCart(
     const affiliateCodeFromOrder = checkCustomData(order)
 
     if (!order.customData || !affiliateCodeFromOrder) {
+      ctx.clients.beeceptor.beeceptor('Falhou no customData ou oms')
       return []
     }
 
@@ -85,6 +88,7 @@ export async function getSuppliersByMiniCart(
       },
     })
   } catch {
+    ctx.clients.beeceptor.beeceptor('Falhou no último catch')
     return []
   }
 
