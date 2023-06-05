@@ -19,7 +19,7 @@ export async function getSuppliersByMiniCart(
   const suppliers: Supplier[] = []
 
   try {
-    const order = await ctx.clients.oms.order(payload.orderId)
+    const order = await ctx.clients.oms.order(`${payload.orderId}-01`)
 
     const affiliateCodeFromOrder = checkCustomData(order)
 
