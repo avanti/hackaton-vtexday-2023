@@ -1,0 +1,11 @@
+query getAffiliateSalesData($affiliateId: String) {
+  getAffiliateSalesData(affiliateId: $affiliateId) {
+    monthlyPerformance {
+      month
+      affiliateSales
+      subAffiliatesSales
+      affiliateSalesComission
+      subAffiliatesSalesComission
+    }
+  }
+}
