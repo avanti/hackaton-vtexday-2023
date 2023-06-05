@@ -89,3 +89,15 @@ input GetSubAffiliatesDataInput {
   affiliateId: String
   pagination: PaginationInput
 }
+
+type GetAffiliateDataResponse {
+  monthlyPerformance: [AffiliateMonthlyPerformance]
+}
+
+type AffiliateMonthlyPerformance {
+  month: String
+  affiliateSales: Int
+  subAffiliatesSales: Int
+  affiliateSalesComission: Int
+  subAffiliatesSalesComission: Int
+}
