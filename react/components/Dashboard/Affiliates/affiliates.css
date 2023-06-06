@@ -72,6 +72,19 @@
     text-align: left;
 }
 
+.view th:nth-child(4),
+.view th:nth-child(3) {
+    text-align: right;
+}
+
+.view th:nth-child(2) {
+    text-align: center;
+}
+
+.view th:nth-child(1) {
+    text-align: left;
+}
+
 .view td {
     border: none;
 }

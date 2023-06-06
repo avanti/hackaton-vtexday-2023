@@ -10,8 +10,21 @@ import { EXPERIMENTAL_useTableMeasures } from 'vtex.styleguide'
 type Subaffiliate = {
   name: string,
   sold: number,
-  status: string
+  status: "APPROVED" | "PENDING" | "DENIED"
 }
+
+
+type TranslatedSubaffiliate = {
+  name: string,
+  sold: number,
+  status: "Aprovado" | "Pendente" | "Negado"
+}
+
+const affiliatedStatus = {
+  "APPROVED": "Aprovado",
+  "PENDING": "Pendente",
+  "DENIED": "Negado"
+} as const
 
 
 const columns = [
@@ -30,7 +43,7 @@ const columns = [
 ]
 
 const Affiliates: React.FC<React.DetailedHTMLProps<React.BaseHTMLAttributes<HTMLDivElement>, HTMLDivElement>> = () => {
-  const [subAffiliates, setSubAffiliates] = useState<Array<Subaffiliate>>()
+  const [subAffiliates, setSubAffiliates] = useState<Array<TranslatedSubaffiliate>>()
   const { session, loading, error } = useRenderSession()
 
   const [getSubAffiliates, { data: subAffiliatesData, loading: subAffiliatesLoading }] = useLazyQuery(GET_SUBAFFILIATES, {
@@ -55,6 +68,7 @@ const Affiliates: React.FC<React.DetailedHTMLProps<React.BaseHTMLAttributes<HTML
         (subAffiliatesData.getSubAffiliatesData as Subaffiliate[]).map((subAffiliateData: Subaffiliate) => (
           {
             ...subAffiliateData,
+            status: affiliatedStatus[subAffiliateData['status']]
           }
         )).reverse()
       )
