@@ -237,7 +237,6 @@ export default () => {
     const response = await createAffiliate({
       variables: {
         input: {
-          affiliateId: String(Date.now()),
           name: normalizedValues.name,
           cpf: normalizedValues.cpf,
           email: normalizedValues.email,
