@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+.aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    height: 80vh;
+    width: max-content;
+    min-width: 20vw;
+    font-family: Poppins, Verdana, Geneva, Tahoma, sans-serif;
+
+
+    background-color: #0001;
+
+    border-radius: 1.6rem;
+    overflow: auto;
+}
+
+.aside main {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: max-content;
+}
+
+.aside main div {
+    position: relative;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: max-content;
+    margin: 3% 10%;
+    font-size: 0.9rem;
+}
+
+.aside main>div:nth-child(1) {
+    padding-top: 12px;
+}
+
+.aside main div p {
+    cursor: pointer;
+    margin: 8px;
+}
+
+.aside main div p:hover {
+    color: #005CFF;
+}
+
+.aside footer {
+    position: relative;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    min-width: max-content;
+    padding: 2rem 2rem;
+}
+
+.active::before {
+    position: absolute;
+    margin-left: calc(-13% * 0.75);
+    border-radius: 0 15px 15px 0;
+    content: '';
+    width: 8px;
+    height: 100%;
+    background-image: linear-gradient(90deg, #005CFF, #0B4DC2);
+}
+
+.footerLink {
+    text-decoration: none;
+    color: #262626;
+}
+
+.footerLink:hover {
+    text-decoration: none;
+    color: #005CFF;
+}

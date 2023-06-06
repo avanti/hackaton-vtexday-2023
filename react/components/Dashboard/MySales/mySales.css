@@ -1,0 +1,92 @@
+.content {
+    display: grid;
+    grid-template:
+        "view1 view2" 20vh
+        "view3 view3" 75vh;
+    grid-template-columns: 49% 49%;
+    grid-gap: 16px;
+    place-content: center;
+}
+
+.view1 {
+    grid-area: view1;
+}
+
+.view2 {
+    grid-area: view2;
+}
+
+.view3 {
+    grid-area: view3;
+}
+
+.card {
+    background-image: linear-gradient(102.27deg, #005CFF 0%, #013DA8 100%);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    color: #FFF;
+    padding: 1rem;
+}
+
+.card a {
+    color: #FFF;
+    font-size: 0.8rem;
+}
+
+.card p {
+    margin: 0;
+}
+
+.card p:nth-child(2) {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.customTooltip {
+    background-color: #005CFF;
+}
+
+.chart {
+    background-color: #002B6C;
+    border-radius: 1rem;
+    box-sizing: border-box;
+}
+
+.view3 table,
+.view3 th {
+    background-color: #021C44;
+    padding: 1rem;
+    color: #FFF;
+    border: none;
+    text-align: center;
+}
+
+.view3 th {
+    font-weight: 600;
+}
+
+.view3 table {
+    border-radius: 1rem;
+}
+
+.view3 td:nth-child(4),
+.view3 td:nth-child(3) {
+    text-align: right;
+}
+
+.view3 td:nth-child(2) {
+    text-align: center;
+}
+
+.view3 td:nth-child(1) {
+    text-align: left;
+}
+
+.view3 td {
+    border: none;
+}
