@@ -1,46 +1,26 @@
 import { ExternalClient } from '@vtex/api'
 import type { InstanceOptions, IOContext } from '@vtex/api'
-
-/* the interface below, for now, has the same format as this apps schema. however, that probably won't be the case
-   and we'll need to change it to fit the acquirer expected payload when creating users there */
-
-interface ICreateAffiliateOnAcquirerBody {
-  affiliateId: string
-  sponsor: {
-    affiliateId: string
-    email: string
-  }
-  name: string
-  cpf: string
-  email: string
-  gender: string
-  address: {
-    postalCode: string
-    street: string
-    number: string
-    neighborhood: string
-    complement: string
-    city: string
-    state: string
-  }
-  phone: string
-}
+import {
+  CreateRecipientAtPagarMe,
+  CreateRecipientAtPagarMeResponse,
+} from '../typings'
 
 export class Acquirer extends ExternalClient {
   constructor(context: IOContext, options?: InstanceOptions) {
-    super(`http://acquirerBaseUrl`, context, {
+    super(`http://api.pagar.me`, context, {
       ...options,
       headers: {
         ...options?.headers,
         'Content-Type': 'application/json',
         'X-Vtex-Use-Https': 'true',
+        Authorization: 'Basic c2tfdGVzdF9rWU05ZTVKZjNhVVJsOThROg==',
       },
     })
   }
 
-  public async createAffiliate(
-    body: ICreateAffiliateOnAcquirerBody
-  ): Promise<any> {
-    return this.http.post('/createAffiliateRoute', body)
+  public async createRecipient(
+    body: CreateRecipientAtPagarMe
+  ): Promise<CreateRecipientAtPagarMeResponse> {
+    return this.http.post('/core/v5/recipients', body)
   }
 }

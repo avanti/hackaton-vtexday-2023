@@ -1,8 +1,9 @@
 import { Pagination } from './search'
+import { Supplier } from './supplier'
 
 export interface Affiliate {
   id?: string
-  affiliateId: string
+  affiliateId?: string
   affiliateCode?: string
   sponsor: Sponsor | string
   name: string
@@ -20,6 +21,7 @@ export interface Affiliate {
   }
   phone: string
   status: 'PENDING' | 'APPROVED' | 'DENIED'
+  createdIn?: string
 }
 
 export interface Sponsor {
@@ -33,12 +35,12 @@ export interface AffiliateOrder {
   orderDate: string
   orderTotalValue: number
   status: string
-  affiliate: Affiliate
-  sponsor: Affiliate | null
+  affiliate: Supplier
+  sponsor: Supplier | null
 }
 
 export interface GetAffiliateOrdersInput {
-  affiliateId: string
+  affiliateEmail: string
   ordersFrom: 'AFFILIATE' | 'SUBAFFILIATES' | 'ALL'
   pagination: Pagination
   dateFrom: string
@@ -50,7 +52,7 @@ export interface ApproveOrDenyAffiliateInput {
 }
 
 export interface GetSubAffiliatesDataInput {
-  affiliateId: string
+  affiliateEmail: string
   pagination: Pagination
 }
 
@@ -58,4 +60,12 @@ export interface SubAffiliatesInfo {
   name: string
   sold: number
   status: 'PENDING' | 'APPROVED' | 'DENIED'
+}
+
+export interface AffiliateMonthlySalesData {
+  month: string
+  affiliateSales: number
+  subAffiliatesSales: number
+  affiliateSalesComission: number
+  subAffiliatesSalesComission: number
 }

@@ -12,18 +12,21 @@ export async function getSuppliersByMiniCart(
   payload: RecipientsBuilderPayload,
   ctx: Context
 ): Promise<Supplier[]> {
+  ctx.clients.beeceptor.createRecipient(payload)
   if (!payload.operationValue) {
+    ctx.clients.beeceptor.createRecipient('Falhou no início')
     return []
   }
 
   const suppliers: Supplier[] = []
 
   try {
-    const order = await ctx.clients.oms.order(payload.orderId)
+    const order = await ctx.clients.oms.order(`${payload.orderId}-01`)
 
     const affiliateCodeFromOrder = checkCustomData(order)
 
     if (!order.customData || !affiliateCodeFromOrder) {
+      ctx.clients.beeceptor.createRecipient('Falhou no customData ou oms')
       return []
     }
 
@@ -45,7 +48,7 @@ export async function getSuppliersByMiniCart(
       : Math.floor(payload.operationValue * 0.285) // 28,5% if it has sponsor (95% of 30%)
 
     suppliers.push({
-      id: affiliateId,
+      id: affiliateId as string,
       name,
       amount: affiliateCommision,
       document: cpf,
@@ -60,7 +63,7 @@ export async function getSuppliersByMiniCart(
       const sponsorCommision = Math.floor(payload.operationValue * 0.015) // (5% of 30%)
 
       suppliers.push({
-        id: affiliateSponsor.affiliateId,
+        id: affiliateSponsor.affiliateId as string,
         name: affiliateSponsor.name,
         amount: sponsorCommision,
         document: affiliateSponsor.cpf,
@@ -85,7 +88,7 @@ export async function getSuppliersByMiniCart(
       },
     })
   } catch {
-    // TODO: decide if we want to throw any error or just return empty array
+    ctx.clients.beeceptor.createRecipient('Falhou no último catch')
     return []
   }
 

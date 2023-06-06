@@ -1,0 +1,18 @@
+.skeletonLoader {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(90deg, #DDD 55%, #EEE 65%, #DDD 67%);
+    background-size: 350%;
+    background-position: right;
+    animation: skeletonAnimation 2s linear forwards infinite;
+}
+
+@keyframes skeletonAnimation {
+    from {
+        background-position: right;
+    }
+
+    to {
+        background-position: left;
+    }
+}

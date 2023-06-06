@@ -11,7 +11,7 @@ export const getSubAffiliatesDataLogic = async (
   input: GetSubAffiliatesDataInput,
   ctx: Context
 ): Promise<any> => {
-  const { affiliateId, pagination } = input
+  const { affiliateEmail, pagination } = input
   const {
     clients: { masterdata },
   } = ctx
@@ -29,7 +29,7 @@ export const getSubAffiliatesDataLogic = async (
         pageSize: pagination?.pageSize ?? 15,
       },
       fields: ['affiliateId,name,status'],
-      where: `sponsor.affiliateId=${affiliateId}`,
+      where: `sponsor.email=${affiliateEmail}`,
     })
 
     let subAffiliatesData: SubAffiliatesInfo[] = []

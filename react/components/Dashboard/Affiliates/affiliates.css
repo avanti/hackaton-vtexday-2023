@@ -1,0 +1,77 @@
+.affiliatesContent {
+    display: grid;
+    grid-template:
+        "view";
+    place-content: stretch;
+}
+
+.view {
+    grid-area: view;
+}
+
+
+.view>div>div {
+    height: fit-content !important;
+}
+
+.affiliatesCard {
+    background-image: linear-gradient(102.27deg, #005CFF 0%, #013DA8 100%);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    color: #FFF;
+    padding: 1rem;
+}
+
+.affiliatesCard a {
+    color: #FFF;
+    font-size: 0.8rem;
+}
+
+.affiliatesCard p {
+    margin: 0;
+}
+
+.affiliatesCard p:nth-child(2) {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.view table,
+.view th {
+    background-color: #021C44;
+    padding: 1rem;
+    color: #FFF;
+    border: none;
+    text-align: center;
+}
+
+.view th {
+    font-weight: 600;
+}
+
+.view table {
+    border-radius: 1rem;
+    height: 100%;
+}
+
+.view td:nth-child(4),
+.view td:nth-child(3) {
+    text-align: right;
+}
+
+.view td:nth-child(2) {
+    text-align: center;
+}
+
+.view td:nth-child(1) {
+    text-align: left;
+}
+
+.view td {
+    border: none;
+}

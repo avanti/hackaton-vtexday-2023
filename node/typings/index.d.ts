@@ -6,6 +6,7 @@ import {
   ApproveOrDenyAffiliateInput,
   SubAffiliatesInfo,
   Sponsor,
+  AffiliateMonthlySalesData,
 } from './affiliate'
 import {
   Item,
@@ -21,9 +22,14 @@ import {
 } from './search'
 import { Supplier } from './supplier'
 import { SetupAppResponse } from './setup'
+import {
+  CreateRecipientAtPagarMe,
+  CreateRecipientAtPagarMeResponse,
+} from './acquirer'
 
 export {
   Affiliate,
+  AffiliateMonthlySalesData,
   Sponsor,
   AffiliateOrder,
   GetAffiliateOrdersInput,
@@ -39,4 +45,6 @@ export {
   SearchInput,
   Supplier,
   SetupAppResponse,
+  CreateRecipientAtPagarMe,
+  CreateRecipientAtPagarMeResponse,
 }

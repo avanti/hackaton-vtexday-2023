@@ -4,6 +4,9 @@
   },
   "affiliated-link": {
     "component": "AffiliatedLink"
+  },
+  "dashboard": {
+    "component": "Dashboard"
   }
 }
   
