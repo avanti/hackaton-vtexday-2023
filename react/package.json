@@ -23,12 +23,6 @@
     "@vtex/tsconfig": "^0.6.0",
     "apollo-cache-inmemory": "^1.6.5",
     "graphql": "^14.6.0",
-    "typescript": "3.9.7",
-    "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles",
-    "vtex.recipients-builder": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.recipients-builder@1.11.0/public/_types/react",
-    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.132.4/public/@types/vtex.render-runtime",
-    "vtex.session-client": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.session-client@1.0.2/public/@types/vtex.session-client",
-    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.4/public/@types/vtex.styleguide",
-    "vtexdayhackathon3.affiliates-program": "https://hackatonj--vtexdayhackathon3.myvtex.com/_v/private/typings/linked/v1/vtexdayhackathon3.affiliates-program@0.0.0+build1686056864/public/@types/vtexdayhackathon3.affiliates-program"
+    "typescript": "3.9.7"
   }
 }
