@@ -46,9 +46,33 @@
     {
       "name": "outbound-access",
       "attrs": {
-        "host": "teste-supplier-protocol.free.beeceptor.com",
+        "host": "portal.vtexcommercestable.com.br",
         "path": "/*"
       }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/oms/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/oms/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/api/oms/*"
+      }
+    },
+    {
+      "name": "OMSViewer"
     },
     {
       "name": "colossus-fire-event"
