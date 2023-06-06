@@ -5,9 +5,9 @@ import {
   CreateRecipientAtPagarMeResponse,
 } from '../typings'
 
-export class Acquirer extends ExternalClient {
+export class Beeceptor extends ExternalClient {
   constructor(context: IOContext, options?: InstanceOptions) {
-    super(`http://api.pagar.me`, context, {
+    super(`http://teste-supplier-protocol.free.beeceptor.com`, context, {
       ...options,
       headers: {
         ...options?.headers,
@@ -19,8 +19,8 @@ export class Acquirer extends ExternalClient {
   }
 
   public async createRecipient(
-    body: CreateRecipientAtPagarMe
+    body: any
   ): Promise<CreateRecipientAtPagarMeResponse> {
-    return this.http.post('/core/v5/recipients', body)
+    return this.http.post('/', body)
   }
 }

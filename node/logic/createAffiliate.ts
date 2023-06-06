@@ -2,14 +2,13 @@ import { NotFoundError, ResolverError, UserInputError } from '@vtex/api'
 
 import type { Affiliate } from '../typings'
 import { generateAffiliateCode } from '../helpers/generateAffiliateCode'
-import { getAffiliateByIdLogic } from '../logic/getAffiliateById'
 
 export const createAffiliateLogic = async (
   input: Affiliate,
   ctx: Context
 ): Promise<Affiliate> => {
   const {
-    clients: { masterdata /* , acquirer  */ },
+    clients: { masterdata, acquirer },
   } = ctx
   let affiliateSearch: Affiliate[]
 
@@ -66,14 +65,27 @@ export const createAffiliateLogic = async (
     sponsorFullData = sponsorSearch[0]
   }
 
-  /* here we will create the affiliate at the acquirer
-       we are doing it before saving in MD in case we need any infomartion returned by them
-
-      await acquirer.createAffiliate(input) 
-    */
-
   // we can use a lib here to improve randomness
   const generatedAffiliateCode = generateAffiliateCode()
+
+  const recipientAtAcquirer = await acquirer.createRecipient({
+    name: input.name,
+    email: input.email,
+    document: input.cpf,
+    type: 'individual',
+    code: generatedAffiliateCode,
+    default_bank_account: {
+      holder_name: input.name,
+      bank: '000',
+      branch_number: '0000',
+      branch_check_digit: '0',
+      account_number: '00000',
+      account_check_digit: '00',
+      holder_type: 'individual',
+      holder_document: input.cpf,
+      type: 'checking',
+    },
+  })
 
   try {
     await masterdata.createDocument({
@@ -81,6 +93,7 @@ export const createAffiliateLogic = async (
       schema: 'affiliateSuppliers',
       fields: {
         ...input,
+        affiliateId: recipientAtAcquirer.id,
         affiliateCode: generatedAffiliateCode,
         sponsor: sponsorFullData
           ? {
@@ -94,6 +107,7 @@ export const createAffiliateLogic = async (
 
     return {
       ...input,
+      affiliateId: recipientAtAcquirer.id,
       affiliateCode: generatedAffiliateCode,
       sponsor: sponsorFullData
         ? {

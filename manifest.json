@@ -1,7 +1,7 @@
 {
   "name": "affiliates-program",
   "vendor": "vtexdayhackathon3",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "title": "affiliates-program",
   "description": "affiliates-program",
   "dependencies": {
@@ -37,6 +37,44 @@
       }
     },
     {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "api.pagar.me",
+        "path": "/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/oms/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/oms/*"
+      }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/api/oms/*"
+      }
+    },
+    {
+      "name": "OMSViewer"
+    },
+    {
       "name": "colossus-fire-event"
     },
     {
@@ -52,8 +90,6 @@
       "url": "https://penseavanti.com.br/"
     }
   },
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
