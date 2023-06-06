@@ -43,9 +43,7 @@ export async function getSuppliersByMiniCart(
       )
     }
 
-    const affiliateCommision = affiliateSponsor
-      ? Math.floor(payload.operationValue * 0.3) // 30% if has no sponsor
-      : Math.floor(payload.operationValue * 0.285) // 28,5% if it has sponsor (95% of 30%)
+    const affiliateCommision = Math.floor(payload.operationValue * 0.25)
 
     suppliers.push({
       id: affiliateId as string,
@@ -60,7 +58,7 @@ export async function getSuppliersByMiniCart(
     })
 
     if (affiliateSponsor) {
-      const sponsorCommision = Math.floor(payload.operationValue * 0.015) // (5% of 30%)
+      const sponsorCommision = Math.floor(payload.operationValue * 0.5)
 
       suppliers.push({
         id: affiliateSponsor.affiliateId as string,
