@@ -233,6 +233,7 @@ export default () => {
         })
       }, {})
 
+
     const response = await createAffiliate({
       variables: {
         input: {
@@ -241,7 +242,7 @@ export default () => {
           cpf: normalizedValues.cpf,
           email: normalizedValues.email,
           gender: 'MALE',
-          sponsor: { email: normalizedValues.sponsor },
+          sponsor: normalizedValues.sponsor,
           address: {
             postalCode: normalizedValues.address?.postalCode || '',
             street: normalizedValues.address?.street || '',
