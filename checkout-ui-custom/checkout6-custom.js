@@ -1,4 +1,4 @@
-const addAffiliateSupplierCodeField = async () => {
+const addAffiliateSupplierCodeField = async (orderForm) => {
   const affiliateCodeFieldWrapper = document.createElement('div')
   affiliateCodeFieldWrapper.id = 'affiliateCodeFieldWrapper'
 
@@ -71,9 +71,8 @@ const addAffiliateSupplierCodeField = async () => {
       affiliateCodeFieldWrapper.removeChild(addButton)
       affiliateCodeFieldWrapper.removeChild(codeText)
       affiliateCodeFieldWrapper.removeChild(removeButton)
-      // we need this fetch because vtexjs does not have a method to remove customData
       fetch(
-        `/api/checkout/pub/orderForm/228fae38fbcd430ca6954c15e4076931/customData/affiliates-program/affiliateCode`,
+        `/api/checkout/pub/orderForm/${orderForm.orderFormId}/customData/affiliates-program/affiliateCode`,
         {
           headers: {},
           method: 'DELETE',
@@ -83,7 +82,7 @@ const addAffiliateSupplierCodeField = async () => {
     })
   }
 
-  const addInputFieldWithCodeFromOrderForm = async (code) => {
+  const addInputFieldWithCodeFromOrderForm = async (orderForm) => {
     const codeField = document.createElement('input')
     codeField.placeholder = 'Código do afiliado'
 
@@ -109,12 +108,12 @@ const addAffiliateSupplierCodeField = async () => {
     addButton.style.display = 'none'
     codeText.style.display = 'block'
     removeButton.style.display = 'block'
-    codeText.innerText = code
+    codeText.innerText = orderForm.marketingData.utmSource
 
     await vtexjs.checkout.setCustomData({
       app: 'affiliates-program',
       field: 'affiliateCode',
-      value: code,
+      value: orderForm.marketingData.utmSource,
     })
 
     removeButton.addEventListener('click', () => {
@@ -122,9 +121,8 @@ const addAffiliateSupplierCodeField = async () => {
       affiliateCodeFieldWrapper.removeChild(addButton)
       affiliateCodeFieldWrapper.removeChild(codeText)
       affiliateCodeFieldWrapper.removeChild(removeButton)
-      // we need this fetch because vtexjs does not have a method to remove customData
       fetch(
-        `/api/checkout/pub/orderForm/228fae38fbcd430ca6954c15e4076931/customData/affiliates-program/affiliateCode`,
+        `/api/checkout/pub/orderForm/${orderForm.orderFormId}/customData/affiliates-program/affiliateCode`,
         {
           headers: {},
           method: 'DELETE',
@@ -135,15 +133,15 @@ const addAffiliateSupplierCodeField = async () => {
   }
 
   addCodeButton.addEventListener('click', addInputField)
-  const orderForm = await vtexjs.checkout.getOrderForm()
   if (orderForm.marketingData?.utmSource) {
-    addInputFieldWithCodeFromOrderForm(orderForm.marketingData?.utmSource)
+    addInputFieldWithCodeFromOrderForm(orderForm)
   }
 }
 
-let intervalId = setInterval(function () {
+let intervalId = setInterval(async function () {
   if (typeof vtexjs !== 'undefined') {
     clearInterval(intervalId)
-    addAffiliateSupplierCodeField()
+    const orderForm = await vtexjs.checkout.getOrderForm()
+    addAffiliateSupplierCodeField(orderForm)
   }
 }, 100)
