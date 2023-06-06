@@ -15,7 +15,6 @@
     "react": "3.x",
     "store": "0.x",
     "node": "6.x",
-    "admin": "0.x",
     "graphql": "1.x",
     "checkout-ui-custom": "0.x"
   },
@@ -51,8 +50,6 @@
       "url": "https://penseavanti.com.br/"
     }
   },
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
