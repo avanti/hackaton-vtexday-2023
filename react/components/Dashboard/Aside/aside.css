@@ -39,8 +39,13 @@
     font-size: 0.9rem;
 }
 
+.aside main>div:nth-child(1) {
+    padding-top: 12px;
+}
+
 .aside main div p {
     cursor: pointer;
+    margin: 8px;
 }
 
 .aside main div p:hover {

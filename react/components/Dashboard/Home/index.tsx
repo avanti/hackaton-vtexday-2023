@@ -1,122 +1,131 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import cn from 'classnames'
 import styles from './home.css'
 import { Link } from 'vtex.render-runtime'
 import { Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
+import { useLazyQuery } from 'react-apollo'
+import { SessionSuccess, useRenderSession } from 'vtex.session-client'
 
-const data = [
-  {
-    month: 'jan',
-    Vendas: 500,
-    "Comissão acumulada no mês": 2400,
-    amt: 2400,
-  },
-  {
-    month: 'fev',
-    Vendas: 200,
-    "Comissão acumulada no mês": 1398,
-    amt: 2210,
-  },
-  {
-    month: 'mar',
-    Vendas: 400,
-    "Comissão acumulada no mês": 9800,
-    amt: 2290,
-  },
-  {
-    month: 'april',
-    Vendas: 500,
-    "Comissão acumulada no mês": 3908,
-    amt: 2000,
-  },
-  {
-    month: 'may',
-    Vendas: 700,
-    "Comissão acumulada no mês": 4800,
-    amt: 2181,
-  },
-  {
-    month: 'june',
-    Vendas: 100,
-    "Comissão acumulada no mês": 3800,
-    amt: 2500,
-  },
-  {
-    month: 'july',
-    Vendas: 800,
-    "Comissão acumulada no mês": 4300,
-    amt: 2100,
-  },
-];
+import GET_AFFILIATE_SALES_DATA from '../../../graphql/queries/getAffiliateSalesData.gql'
+import SkeletonLoader from '../../SkeletonLoader'
+import { Payload, ValueType } from 'recharts/types/component/DefaultTooltipContent'
 
-/*const getIntroOfPage = (label: string) => {
-  if (label === 'Page A') {
-    return "Page A is about men's clothing";
-  }
-  if (label === 'Page B') {
-    return "Page B is about women's dress";
-  }
-  if (label === 'Page C') {
-    return "Page C is about women's bag";
-  }
-  if (label === 'Page D') {
-    return 'Page D is about household goods';
-  }
-  if (label === 'Page E') {
-    return 'Page E is about food';
-  }
-  if (label === 'Page F') {
-    return 'Page F is about baby food';
-  }
-  return '';
-};
-
-const CustomTooltip = ({ active, payload, label }: any) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className={styles.customTooltip}>
-        <p className={styles.label}>{`${label} : ${payload[0].value}`}</p>
-        <p className={styles.intro}>{getIntroOfPage(label)}</p>
-        <p className={styles.desc}>Anything you want can be displayed here.</p>
-      </div>
-    );
-  }
-
-  return null;
-};*/
-
-const parentWidth = () => {
-  const chartContainer = window.document?.getElementById('chartContainer')
-  return  chartContainer?.clientWidth
+type SalesData = {
+  affiliateSales: number
+  affiliateSalesComission: number
+  month: string
+  subAffiliatesSales: number
+  subAffiliatesSalesComission: number
 }
 
-const Home: React.FC<React.DetailedHTMLProps<React.BaseHTMLAttributes<HTMLDivElement>, HTMLDivElement>> = () => {
-  
+const MONTH = {
+  0: 'Janeiro',
+  1: 'Fevereiro',
+  2: 'Março',
+  3: 'Abril',
+  4: 'Maio',
+  5: 'Junho',
+  6: 'Julho',
+  7: 'Agosto',
+  8: 'Setembro',
+  9: 'Outubro',
+  10: 'Novembro',
+  11: 'Dezembro',
 
+}
+
+
+const yAxisFormatter = (values: number, _index: number) => {
+  return formatter.format(values)
+}
+
+const tooltipTextFormatter = (label: keyof (typeof MONTH), _payload: Payload<ValueType, string | number>[]) => {
+
+  return <p>{MONTH[label]}</p>
+}
+
+const xAxisFormatter = (values: keyof (typeof MONTH), _index: number) => {
+  return MONTH[values]
+}
+
+const formatter = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+  minimumFractionDigits: 2,
+  minimumIntegerDigits: 1,
+  currencyDisplay: 'symbol',
+})
+
+const Home: React.FC<React.DetailedHTMLProps<React.BaseHTMLAttributes<HTMLDivElement>, HTMLDivElement>> = () => {
+  const [salesData, setSalesData] = useState<Array<SalesData>>()
+  const [parentRef, setParentRef] = useState<HTMLDivElement>()
+  const { session, loading, error } = useRenderSession()
+
+  const [getAffiliatedSalesData, { data: affiliatedSalesData }] = useLazyQuery(GET_AFFILIATE_SALES_DATA, {
+    ssr: false
+  })
+
+  useEffect(() => {
+    if (!loading && session) {
+      getAffiliatedSalesData({
+        variables: {
+          affiliateEmail: (session as SessionSuccess)?.namespaces?.authentication?.storeUserEmail.value || ''
+        }
+      })
+    }
+
+  }, [session, loading, error])
+
+  useEffect(() => {
+    if (affiliatedSalesData?.getAffiliateSalesData?.monthlyPerformance?.length) {
+      setSalesData(
+        (affiliatedSalesData.getAffiliateSalesData.monthlyPerformance as SalesData[]).map((affiliateData: SalesData) => (
+          {
+            ...affiliateData,
+            affiliateSalesComission: affiliateData.affiliateSalesComission / 100,
+            subAffiliatesSalesComission: affiliateData.subAffiliatesSalesComission / 100
+          }
+        )).reverse()
+      )
+    }
+  }, [affiliatedSalesData])
+
+  const parentWidth = () => {
+    return parentRef?.clientWidth
+  }
   return (
     <section className={styles.content}>
-      <div className={cn(styles.view1, styles.card)}>
-        <p>Total a receber no mês</p>
-        <p>R$XXXX,XX</p>
-        <Link to='#'>Ver detalhes</Link>
-      </div>
-      <div className={cn(styles.view2, styles.card)}>
-        <p>Número de vendas no mês</p>
-        <p>R$XXXX,XX</p>
-        <Link to='#'>Ver detalhes</Link>
-      </div>
+      {salesData?.length ? <>
+        <div className={cn(styles.view1, styles.card)}>
+          <p>Total a receber no mês</p>
+          <p>{formatter.format(
+            salesData[salesData.length - 1].affiliateSalesComission
+          )}</p>
+          <Link to='#'>Ver detalhes</Link>
+        </div>
+        <div className={cn(styles.view2, styles.card)}>
+          <p>Número de vendas no mês</p>
+          <p>{salesData[salesData.length - 1].affiliateSales}</p>
+          <Link to='#'>Ver detalhes</Link>
+        </div>
 
-      <div className={styles.view3} id="chartContainer">
-          <LineChart width={parentWidth()} margin={{ top: 30, right: 30, left: 15, bottom: 15 }} height={350} data={data} className={styles.chart}>
-            <XAxis dataKey="month" strokeWidth={0} stroke="#FFFA" padding={{left: 8}}/>
-            <YAxis yAxisId="right" strokeWidth={0} stroke="#FFFA" fontWeight={300}  padding={{bottom: 8}}/>
-            <YAxis yAxisId="left" strokeWidth={0} orientation='right' stroke="#FFFA" fontWeight={300}  padding={{bottom: 8}}/>
+        <div ref={el => { el && setParentRef(el) }} className={styles.view3} id="chartContainer">
+          {parentRef ? <LineChart width={parentWidth()} margin={{ top: 30, right: 20, left: 30, bottom: 15 }} height={350} data={salesData} className={styles.chart}>
+            <XAxis dataKey="month" strokeWidth={0} stroke="#FFFC" padding={{ left: 8 }} tickFormatter={xAxisFormatter} />
+            <YAxis yAxisId="right" strokeWidth={0} stroke="#FFFC" fontWeight={300} padding={{ bottom: 8 }} fontSize={10} tickFormatter={yAxisFormatter} />
+            <YAxis yAxisId="left" strokeWidth={0} orientation='right' stroke="#FFFC" fontWeight={300} padding={{ bottom: 8 }} />
 
-            <Tooltip  itemStyle={{color: "#000"}}/>
-            <Line yAxisId="left" type="monotone" dataKey="Vendas" stroke="#FFF" />
-            <Line  yAxisId="right" type="monotone" dataKey="Comissão acumulada no mês" stroke="#FFF" />
-          </LineChart>
-      </div>
+            <Tooltip itemStyle={{ color: "#000" }} labelFormatter={tooltipTextFormatter} />
+            <Line yAxisId="left" name='Número de Vendas' type="monotone" dataKey="affiliateSales" stroke="#FFF" maskUnits="R$" />
+            <Line yAxisId="right" name='Comissão (R$)' type="monotone" dataKey="affiliateSalesComission" stroke="#FFF" />
+          </LineChart> : <SkeletonLoader className={styles.view3} />}
+
+        </div>
+      </> : <>
+        <SkeletonLoader className={styles.view1} />
+        <SkeletonLoader className={styles.view2} />
+        <SkeletonLoader className={styles.view3} />
+      </>}
     </section>
   )
 }
