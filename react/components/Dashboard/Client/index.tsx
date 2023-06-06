@@ -21,15 +21,11 @@ const Client: React.FC<React.DetailedHTMLProps<React.BaseHTMLAttributes<HTMLDivE
     if (!loading && session) {
       getAffiliateByMail({
         variables: {
-          affiliateMail: (session as SessionSuccess)?.namespaces?.authentication?.storeUserEmail.value || ''
+          affiliateMail: (session as SessionSuccess)?.namespaces?.authentication?.storeUserEmail?.value || ''
         }
       })
     }
   }, [session, loading, error])
-
-  useEffect(() => {
-    console.log({ affiliatedByEmail })
-  }, [affiliatedByEmail])
 
   return (
     <section className={styles.client}>
@@ -39,12 +35,12 @@ const Client: React.FC<React.DetailedHTMLProps<React.BaseHTMLAttributes<HTMLDivE
           <FaUser size={48} style={{ backgroundColor: "#FFF", borderRadius: "50%", padding: "0.8rem" }} />
         </div>
         <p className={styles.profileName}>{affiliatedByEmail.getAffiliateByMail.name}</p>
-        <p className={styles.profileSince}>{'affiliatedByEmail.getAffiliateByMail.date'}</p>
+        <p className={styles.profileSince}>Membro desde {' '}{ new Date(affiliatedByEmail.getAffiliateByMail.createdIn).getFullYear()}</p>
       </div>
 
       <div className={styles.coupomWrapper}>
         <p className={styles.coupomCallText}>Código de cupom</p>
-        <div className={styles.coupom}><p>{affiliatedByEmail.getAffiliateByMail.affiliateCode}</p><MdContentCopy size={16} color='#707070' /></div>
+        <div className={styles.coupom}><p>{affiliatedByEmail.getAffiliateByMail.affiliateCode}</p><MdContentCopy className={styles.copyButton} onClick={() => navigator.clipboard.writeText(`${affiliatedByEmail.getAffiliateByMail.affiliateCode}`)} size={16} color='#707070' title='Copiar'/></div>
       </div>
       </> : <SkeletonLoader className=''/>}
     </section>

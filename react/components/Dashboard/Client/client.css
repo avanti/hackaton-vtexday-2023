@@ -87,3 +87,7 @@
     font-weight: bold;
     font-size: 0.85rem;
 }
+
+.copyButton:hover {
+    cursor: pointer;
+}

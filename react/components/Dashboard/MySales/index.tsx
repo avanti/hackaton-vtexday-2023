@@ -1,14 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import cn from 'classnames'
-import styles from './home.css'
+import styles from './mySales.css'
 import { Link } from 'vtex.render-runtime'
-import { Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
 import { useLazyQuery } from 'react-apollo'
 import { SessionSuccess, useRenderSession } from 'vtex.session-client'
+import { EXPERIMENTAL_Table as Table, } from 'vtex.styleguide'
 
+import GET_AFFILIATE_ORDERS from '../../../graphql/queries/getAffiliateOrders.gql'
 import GET_AFFILIATE_SALES_DATA from '../../../graphql/queries/getAffiliateSalesData.gql'
 import SkeletonLoader from '../../SkeletonLoader'
-import { Payload, ValueType } from 'recharts/types/component/DefaultTooltipContent'
+import {EXPERIMENTAL_useTableMeasures} from 'vtex.styleguide'
+
+type OrderData = {
+  orderId: string,
+  orderDate: string,
+  orderTotalValue: number,
+  status: string,
+  affiliate: {
+    commissionAmount: number,
+    amount: number,
+  },
+  sponsor: {
+    amount: number,
+    commissionAmount: number,
+  }
+}
 
 type SalesData = {
   affiliateSales: number
@@ -16,36 +32,6 @@ type SalesData = {
   month: string
   subAffiliatesSales: number
   subAffiliatesSalesComission: number
-}
-
-const MONTH = {
-  0: 'Janeiro',
-  1: 'Fevereiro',
-  2: 'Março',
-  3: 'Abril',
-  4: 'Maio',
-  5: 'Junho',
-  6: 'Julho',
-  7: 'Agosto',
-  8: 'Setembro',
-  9: 'Outubro',
-  10: 'Novembro',
-  11: 'Dezembro',
-
-}
-
-
-const yAxisFormatter = (values: number, _index: number) => {
-  return formatter.format(values)
-}
-
-const tooltipTextFormatter = (label: keyof (typeof MONTH), _payload: Payload<ValueType, string | number>[]) => {
-
-  return <p>{MONTH[label]}</p>
-}
-
-const xAxisFormatter = (values: keyof (typeof MONTH), _index: number) => {
-  return MONTH[values]
 }
 
 const formatter = new Intl.NumberFormat('pt-BR', {
@@ -56,10 +42,47 @@ const formatter = new Intl.NumberFormat('pt-BR', {
   currencyDisplay: 'symbol',
 })
 
-const Home: React.FC<React.DetailedHTMLProps<React.BaseHTMLAttributes<HTMLDivElement>, HTMLDivElement>> = () => {
+const columns = [
+  {
+    id: 'orderId',
+    title: 'Pedido',
+  },
+  {
+    id: 'orderDate',
+    title: 'Data de venda',
+    cellRenderer: ({ data }: { data: {orderDate: string} }) => {
+      return new Date(data.orderDate).toLocaleDateString()
+    },
+    extended: true,
+  },
+  {
+    id: 'affiliate',
+    title: 'Comissão',
+    cellRenderer: ({ data }: { data: {amount: number, commissionAmount: number} }) => {
+      return formatter.format(
+        data.amount/100
+      )
+    },
+  },
+  {
+    id: 'orderTotalValue',
+    title: 'Total da venda',
+    cellRenderer: ({ data }: { data: number }) => {
+      return formatter.format(
+        data/100
+      )
+    },
+  }
+]
+
+const MySales: React.FC<React.DetailedHTMLProps<React.BaseHTMLAttributes<HTMLDivElement>, HTMLDivElement>> = () => {
   const [salesData, setSalesData] = useState<Array<SalesData>>()
-  const [parentRef, setParentRef] = useState<HTMLDivElement>()
+  const [ordersData, setOrdersData] = useState<Array<OrderData>>()
   const { session, loading, error } = useRenderSession()
+
+  const [getAffiliatedOrders, { data: affiliatedOrders }] = useLazyQuery(GET_AFFILIATE_ORDERS, {
+    ssr: false
+  })
 
   const [getAffiliatedSalesData, { data: affiliatedSalesData }] = useLazyQuery(GET_AFFILIATE_SALES_DATA, {
     ssr: false
@@ -67,6 +90,12 @@ const Home: React.FC<React.DetailedHTMLProps<React.BaseHTMLAttributes<HTMLDivEle
 
   useEffect(() => {
     if (!loading && session) {
+      getAffiliatedOrders({
+        variables: {
+          input: {affiliateEmail: (session as SessionSuccess)?.namespaces?.authentication?.storeUserEmail?.value || ''}
+        }
+      })
+
       getAffiliatedSalesData({
         variables: {
           affiliateEmail: (session as SessionSuccess)?.namespaces?.authentication?.storeUserEmail?.value || ''
@@ -90,9 +119,20 @@ const Home: React.FC<React.DetailedHTMLProps<React.BaseHTMLAttributes<HTMLDivEle
     }
   }, [affiliatedSalesData])
 
-  const parentWidth = () => {
-    return parentRef?.clientWidth
-  }
+  useEffect(() => {
+    if (affiliatedSalesData?.getAffiliateSalesData?.monthlyPerformance?.length) {
+      setOrdersData(
+        (affiliatedOrders.getAffiliateOrders.data as OrderData[]).map((affiliateData: OrderData) => (
+          {
+            ...affiliateData,
+          }
+        )).reverse()
+      )
+    }
+  }, [affiliatedOrders])
+
+  const measures = EXPERIMENTAL_useTableMeasures({ size: salesData?.length || 0 })
+
   return (
     <section className={styles.content}>
       {salesData?.length ? <>
@@ -109,17 +149,12 @@ const Home: React.FC<React.DetailedHTMLProps<React.BaseHTMLAttributes<HTMLDivEle
           <Link to='#'>Ver detalhes</Link>
         </div>
 
-        <div ref={el => { el && setParentRef(el) }} className={styles.view3} id="chartContainer">
-          {parentRef ? <LineChart width={parentWidth()} margin={{ top: 30, right: 20, left: 30, bottom: 15 }} height={350} data={salesData} className={styles.chart}>
-            <XAxis dataKey="month" strokeWidth={0} stroke="#FFFC" padding={{ left: 8, right: 8 }} fontSize={10} tickFormatter={xAxisFormatter} />
-            <YAxis yAxisId="right" strokeWidth={0} stroke="#FFFC" fontWeight={300} padding={{ bottom: 8 }} fontSize={10} tickFormatter={yAxisFormatter} />
-            <YAxis yAxisId="left" strokeWidth={0} orientation='right' stroke="#FFFC" fontWeight={300} fontSize={10} padding={{ bottom: 8 }} />
-
-            <Tooltip itemStyle={{ color: "#000" }} labelFormatter={tooltipTextFormatter} />
-            <Line yAxisId="left" name='Número de Vendas' type="monotone" dataKey="affiliateSales" stroke="#FFF" maskUnits="R$" />
-            <Line yAxisId="right" name='Comissão (R$)' type="monotone" dataKey="affiliateSalesComission" stroke="#FFF" />
-          </LineChart> : <SkeletonLoader className={styles.view3} />}
-
+        <div className={styles.view3}>
+         <Table
+            measures={measures}
+            items={ordersData}
+            columns={columns}
+          />
         </div>
       </> : <>
         <SkeletonLoader className={styles.view1} />
@@ -130,4 +165,4 @@ const Home: React.FC<React.DetailedHTMLProps<React.BaseHTMLAttributes<HTMLDivEle
   )
 }
 
-export default Home
+export default MySales

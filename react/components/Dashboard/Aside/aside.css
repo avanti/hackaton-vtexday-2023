@@ -72,3 +72,13 @@
     height: 100%;
     background-image: linear-gradient(90deg, #005CFF, #0B4DC2);
 }
+
+.footerLink {
+    text-decoration: none;
+    color: #262626;
+}
+
+.footerLink:hover {
+    text-decoration: none;
+    color: #005CFF;
+}

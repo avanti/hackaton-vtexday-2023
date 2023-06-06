@@ -55,3 +55,19 @@
   cursor: pointer;
   filter: brightness(125%)
 }
+
+.appWrapper div::-webkit-scrollbar,
+.appWrapper table::-webkit-scrollbar {
+  width: 0.2rem;
+}
+
+.appWrapper div::-webkit-scrollbar-track,
+.appWrapper table::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.appWrapper div::-webkit-scrollbar-thumb,
+.appWrapper table::-webkit-scrollbar-thumb {
+  background-color: #888;
+  outline: 1px solid #888;
+}
