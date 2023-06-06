@@ -40,7 +40,7 @@ export async function getSuppliersByMiniCart(
       )
     }
 
-    const affiliateCommision = Math.floor(payload.operationValue * 0.3)
+    const affiliateCommision = Math.floor(payload.operationValue * 0.25)
 
     suppliers.push({
       id: affiliateId as string,
