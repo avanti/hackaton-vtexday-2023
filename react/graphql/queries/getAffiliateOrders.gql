@@ -1,6 +1,6 @@
 query GetAffiliateOrdersInput($input: GetAffiliateOrdersInput) {
   getAffiliateOrders(input: $input)
-    @context(provider: "vtexdayhackathon3.affiliates-program") {
+    @context(provider: "avantivtexio.affiliate-program") {
     data {
       orderId
       orderDate

@@ -1,9 +1,9 @@
 {
-  "name": "affiliates-program",
-  "vendor": "vtexdayhackathon3",
-  "version": "0.0.11",
-  "title": "affiliates-program",
-  "description": "affiliates-program",
+  "name": "affiliate-program",
+  "vendor": "avantivtexio",
+  "version": "0.0.1",
+  "title": "affiliate-program",
+  "description": "affiliate-program",
   "dependencies": {
     "vtex.styleguide": "9.x",
     "vtex.css-handles": "0.x",
@@ -16,7 +16,6 @@
     "store": "0.x",
     "node": "6.x",
     "graphql": "1.x",
-    "supplierProvider": "0.x",
     "checkout-ui-custom": "0.x"
   },
   "credentialType": "absolute",

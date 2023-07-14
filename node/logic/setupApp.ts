@@ -61,19 +61,19 @@ export async function setupAppLogic(ctx: Context): Promise<SetupAppResponse> {
       newApps = currentOrderFormConfiguration?.apps.slice()
 
       const previousConfigIndex = newApps?.findIndex(
-        (app) => app.id === 'affiliates-program'
+        (app) => app.id === 'affiliate-program'
       )
 
       if (previousConfigIndex === -1) {
         newApps?.push({
-          id: 'affiliates-program',
+          id: 'affiliate-program',
           fields: ['affiliateCode'],
           major: 0,
         })
         customDataStatus = 'CREATED'
       } else {
         newApps[previousConfigIndex] = {
-          id: 'affiliates-program',
+          id: 'affiliate-program',
           fields: ['affiliateCode'],
           major: 0,
         }
@@ -81,7 +81,7 @@ export async function setupAppLogic(ctx: Context): Promise<SetupAppResponse> {
       }
     } else {
       newApps?.push({
-        id: 'affiliates-program',
+        id: 'affiliate-program',
         fields: ['affiliateCode'],
         major: 0,
       })

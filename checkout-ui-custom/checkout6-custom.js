@@ -58,7 +58,7 @@ const addAffiliateSupplierCodeField = async (orderForm) => {
       )
       if (codeField && codeField.value) {
         return vtexjs.checkout.setCustomData({
-          app: 'affiliates-program',
+          app: 'affiliate-program',
           field: 'affiliateCode',
           value: codeField.value,
         })
@@ -72,7 +72,7 @@ const addAffiliateSupplierCodeField = async (orderForm) => {
       affiliateCodeFieldWrapper.removeChild(codeText)
       affiliateCodeFieldWrapper.removeChild(removeButton)
       fetch(
-        `/api/checkout/pub/orderForm/${orderForm.orderFormId}/customData/affiliates-program/affiliateCode`,
+        `/api/checkout/pub/orderForm/${orderForm.orderFormId}/customData/affiliate-program/affiliateCode`,
         {
           headers: {},
           method: 'DELETE',
@@ -111,7 +111,7 @@ const addAffiliateSupplierCodeField = async (orderForm) => {
     codeText.innerText = orderForm.marketingData.utmSource
 
     await vtexjs.checkout.setCustomData({
-      app: 'affiliates-program',
+      app: 'affiliate-program',
       field: 'affiliateCode',
       value: orderForm.marketingData.utmSource,
     })
@@ -122,7 +122,7 @@ const addAffiliateSupplierCodeField = async (orderForm) => {
       affiliateCodeFieldWrapper.removeChild(codeText)
       affiliateCodeFieldWrapper.removeChild(removeButton)
       fetch(
-        `/api/checkout/pub/orderForm/${orderForm.orderFormId}/customData/affiliates-program/affiliateCode`,
+        `/api/checkout/pub/orderForm/${orderForm.orderFormId}/customData/affiliate-program/affiliateCode`,
         {
           headers: {},
           method: 'DELETE',

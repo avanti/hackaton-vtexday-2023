@@ -1,6 +1,6 @@
 query getAffiliateById($affiliateId: String) {
   getAffiliateById(affiliateId: $affiliateId)
-    @context(provider: "vtexdayhackathon3.affiliates-program") {
+    @context(provider: "avantivtexio.affiliate-program") {
     affiliateId
     affiliateCode
     sponsor {

@@ -1,6 +1,6 @@
 mutation approveOrDenyAffiliate($input: ApproveOrDenyAffiliateInput) {
   approveOrDenyAffiliate(input: $input)
-    @context(provider: "vtexdayhackathon3.affiliates-program") {
+    @context(provider: "avantivtexio.affiliate-program") {
     affiliateId
     affiliateCode
     sponsor {

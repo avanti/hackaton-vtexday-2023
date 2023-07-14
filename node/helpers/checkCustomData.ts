@@ -2,7 +2,7 @@ import { OrderDetailResponse, CustomApps } from '@vtex/clients'
 
 export const checkCustomData = (order: OrderDetailResponse): string | false => {
   const affiliateSuppliersCustomData = order?.customData?.customApps?.find(
-    (app: CustomApps) => app.id === 'affiliates-program'
+    (app: CustomApps) => app.id === 'affiliate-program'
   )
 
   if (
